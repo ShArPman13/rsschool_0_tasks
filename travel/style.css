@@ -1,0 +1,139 @@
+/* Нормолайз к css: */
+*,
+*:before,
+*:after {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+  min-height: 100vh;
+  font-size: 16px;
+  line-height: normal;
+  color: rgb(255, 255, 255);
+  font-weight: 400;
+  font-style: normal;
+  overflow-x: hidden;
+}
+
+/* Нормолайз к css: */
+
+.wrapper {
+  width: 100%;
+  margin: 0px auto;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.backtop {
+  width: 100%;
+  max-height: 765px;
+  overflow: hidden;
+}
+
+.imgbacktop {
+  width: 100%;
+  object-fit: cover;
+}
+
+header {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(242, 120, 92, 0.7);
+  height: 90px;
+  width: 100%;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+}
+
+.container-in-header {
+  width: 1440px;
+  display: flex;
+  padding: 0 120px;
+  /* border: 1px solid red; */
+}
+
+.logobox {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.logoname {
+  font-family: "Magra";
+  font-size: 32px;
+  font-weight: 600;
+  width: 180px;
+}
+
+.nav {
+  /* border: 1px solid rgb(19, 234, 73); */
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.nav-list {
+  width: 100%;
+  font-family: "Red Hat Text";
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  gap: 42px;
+}
+
+.button1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 103px;
+  height: 41px;
+  background-color: #0D606F;
+  border-radius: 10px;
+  color: white;
+  font-family: "Red Hat Text";
+  font-weight: 500;
+  box-shadow: 0px 2px 3px 0px rgba(13, 96, 111, 0.16);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
