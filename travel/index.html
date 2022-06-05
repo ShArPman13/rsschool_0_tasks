@@ -32,7 +32,7 @@
           <ul class="nav-list">
             <li class="nav-item"><a href="#how" class="nav-link">How it works</a></li>
             <li class="nav-item"><a href="#plan" class="nav-link">Plan your trip</a></li>
-            <li class="nav-item"><a href="#destinations" class="nav-link">Destinations</a></li>
+            <li class="nav-item"><a href="#dest" class="nav-link">Destinations</a></li>
             <li class="nav-item"><a href="#stories" class="nav-link">Travel Stories</a></li>
           </ul>
         </nav>
@@ -46,7 +46,7 @@
     <main>
 
       <section class="preview">
-        <div class="box-preview">
+        <div class="box-preview" id="how">
           <h1>Explore the beauty of the World</h1>
           <p class="recomend">Recieve personalized recommendations for countries, hotels, activities and more</p>
           <div class="search-box">
@@ -58,8 +58,64 @@
         </div>
       </section>
 
-      <section class="steps"></section>
-      <sections class="destinations"></sections>
+
+      <section class="steps" id="plan">
+        <div class="box-steps">
+          <h2>3 STEPS TO THE PERFECT TRIP</h2>
+
+          <div class="box-icons-steps">
+            <div class="box-icon velo">
+              <img class="velopic" src="assets/velo.svg" width="50" height="45" alt="velo-picture">
+            </div>
+            <div class="box-icon date">
+              <img class="datepic" src="assets/date.svg" width="52" height="52" alt="date-picture">
+            </div>
+            <div class="box-icon plane">
+              <img class="planepic" src="assets/plane.svg" width="60" height="45" alt="plane-picture">
+            </div>
+          </div>
+
+          <div class="box-text">
+            <span class="icon-text">Tell us what you want to do</span>
+            <span class="icon-text central-span">Share us preferable dates</span>
+            <span class="icon-text">We will give you recommendations</span>
+          </div>
+        </div>
+      </section>
+
+
+      <sections class="destinations" id="dest">
+        <div class="box-destinations">
+          <h2>POPULAR DESTINATIONS</h2>
+          <div class="sliderpics">
+            <div class="boxforpic">
+              <img class="sliderpic sliderpic-spain" src="assets/spain.png" width="800" height="800" alt="Spain">
+              <span class="slider-text-pic">SPAIN</span>
+            </div>
+            <div class="boxforpic">
+              <img class="sliderpic sliderpic-japan" src="assets/destinations.png" width="800" height="800" alt="Japan">
+              <span class="slider-text-pic">JAPAN</span>
+            </div>
+            <div class="boxforpic">
+              <img class="sliderpic sliderpic-usa" src="assets/usa.png" width="800" height="800" alt="USA">
+              <span class="slider-text-pic">USA</span>
+            </div>
+          </div>
+
+          <div class="slider-cirkles">
+            <span class="cirkle"></span>
+            <span class="cirkle-main"></span>
+            <span class="cirkle"></span>
+          </div>
+
+          <button class="button button3">
+            <img src="assets/arrowforbutton.svg" width="40" height="40" alt="arrow">
+            Find More
+          </button>
+        </div>
+      </sections>
+
+
       <section class="stories"></section>
     </main>
 
