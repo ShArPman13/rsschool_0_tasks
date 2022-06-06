@@ -101,13 +101,19 @@ header {
   justify-content: flex-start;
 }
 
+.nav-link:hover {
+  color: #717c7e;
+  transition: 0.5s;
+}
+
 .nav-list {
   font-family: "Red Hat Text";
   font-weight: 500;
   display: flex;
   flex-shrink: 0;
-  gap: 42px;
+  gap: 43px;
   padding-right: 38px;
+  padding-top: 5px;
 }
 
 .button1 {
@@ -121,10 +127,12 @@ header {
   border-radius: 10px;
   color: white;
   font-family: "Red Hat Text";
+  font-size: 16px;
   font-weight: 500;
   box-shadow: 0px 2px 3px 0px rgba(13, 96, 111, 0.16);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   cursor: pointer;
+  padding-top: 5px;
 }
 
 .button2 {
@@ -141,7 +149,7 @@ header {
   font-family: "Red Hat Text";
   font-weight: 500;
   box-shadow: 0px 2px 3px 0px rgba(13, 96, 111, 0.16);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 3px 0px rgba(13, 96, 111, 0.08);
   cursor: pointer;
 }
 
@@ -164,6 +172,7 @@ h1 {
   font-weight: 700;
   font-family: Aleo;
   font-style: italic;
+  padding-bottom: 10px;
 }
 
 .search-box {
@@ -408,7 +417,7 @@ h2 {
 
 .button3 {
   gap: 10px;
-  margin: 40px;
+  margin-top: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -421,6 +430,143 @@ h2 {
   font-family: "Red Hat Text";
   font-weight: 500;
   box-shadow: 0px 2px 3px 0px rgba(13, 96, 111, 0.16);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 3px 0px rgba(13, 96, 111, 0.08);
   cursor: pointer;
+}
+
+/* ----------------------------------------------------STORIES */
+.box-stories {
+  padding-top: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.box-for-foto {
+  margin-top: 40px;
+  background-image: url(assets/back_bottom.jpg);
+  width: 1440px;
+  height: 1331px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.box-for-foto-white {
+  padding: 0 120px;
+  padding-top: 40px;
+  width: 1440px;
+  height: 1270px;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+}
+
+.box-pics-white {
+  display: flex;
+  width: 1200px;
+  gap: 40px;
+}
+
+h3 {
+  color: rgba(13, 96, 111, 1);
+  font-family: "Aleo";
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 42px;
+}
+
+.text-stories {
+  color: rgba(13, 96, 111, 1);
+  font-family: "Aleo";
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.text-white {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.pics-travel {
+  box-shadow: 0px 4px 4px 0px rgba(13, 96, 111, 1);
+  border-radius: 16px;
+}
+
+.stories-link {
+  color: rgba(13, 96, 111, 1);
+  text-decoration: underline;
+}
+
+.button4 {
+  gap: 10px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 228px;
+  height: 59px;
+  background-color: #0D606F;
+  border-radius: 10px;
+  font-size: 24px;
+  color: white;
+  font-family: "Red Hat Text";
+  font-weight: 500;
+  box-shadow: 0px 2px 3px 0px rgba(13, 96, 111, 0.16);
+  box-shadow: 0px 0px 3px 0px rgba(13, 96, 111, 0.08);
+  cursor: pointer;
+  padding-right: 5px;
+}
+
+/* ----------------------------------------------------FOOTER */
+
+footer {
+  /* border: 1px solid rgb(255, 0, 0); */
+  width: 729px;
+  height: 34px;
+  margin-left: 470px;
+  margin-bottom: 13px;
+  margin-top: 13px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arr {
+  height: 21px;
+  font-family: "Red Hat Text";
+  font-weight: 500;
+  font-size: 16px;
+  color: rgb(255, 255, 255);
+}
+
+.social-media {
+  display: flex;
+  gap: 20px;
+}
+
+.git-rss {
+  position: absolute;
+  display: flex;
+  gap: 20px;
+  left: 120px;
+}
+
+.git:hover {
+  filter: invert(30%);
+  transition: 0.5s;
+}
+
+.rss:hover {
+  filter: invert(30%);
+  transition: 0.5s;
+}
+
+.sm-item:hover {
+  filter: invert(30%);
+  transition: 0.5s;
 }
