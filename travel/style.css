@@ -1,0 +1,572 @@
+/* Нормолайз к css: */
+*,
+*:before,
+*:after {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+  min-height: 100vh;
+  font-size: 16px;
+  line-height: normal;
+  color: rgb(255, 255, 255);
+  font-weight: 400;
+  font-style: normal;
+  overflow-x: hidden;
+}
+
+/* Нормолайз к css: */
+
+.wrapper {
+  position: relative;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0px auto;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+header {
+  position: absolute;
+  /* top: 0; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(242, 120, 92, 0.7);
+  height: 90px;
+  width: 100%;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+}
+
+.container-in-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 120px;
+}
+
+.logobox {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.logoname {
+  font-family: "Magra";
+  font-size: 32px;
+  font-weight: 600;
+  width: 180px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.nav-link:hover {
+  color: #717c7e;
+  transition: 0.5s;
+}
+
+.nav-list {
+  font-family: "Red Hat Text";
+  font-weight: 500;
+  display: flex;
+  flex-shrink: 0;
+  gap: 43px;
+  padding-right: 38px;
+  padding-top: 5px;
+}
+
+.button1 {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 103px;
+  height: 41px;
+  background-color: #0D606F;
+  border-radius: 10px;
+  color: white;
+  font-family: "Red Hat Text";
+  font-size: 16px;
+  font-weight: 500;
+  box-shadow: 0px 2px 3px 0px rgba(13, 96, 111, 0.16);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.button2 {
+  margin: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 228px;
+  height: 59px;
+  background-color: #0D606F;
+  border-radius: 10px;
+  font-size: 24px;
+  color: white;
+  font-family: "Red Hat Text";
+  font-weight: 500;
+  box-shadow: 0px 2px 3px 0px rgba(13, 96, 111, 0.16);
+  box-shadow: 0px 0px 3px 0px rgba(13, 96, 111, 0.08);
+  cursor: pointer;
+}
+
+.button:active {
+  transform: scale(0.97);
+  background-color: #11515c;
+}
+
+h1 {
+  color: rgb(255, 255, 255);
+  font-size: 80px;
+  font-weight: 700;
+  line-height: 96px;
+  font-family: Aleo;
+}
+
+.recomend {
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  font-weight: 700;
+  font-family: Aleo;
+  font-style: italic;
+  padding-bottom: 10px;
+}
+
+.search-box {
+  background-color: rgba(255, 255, 255, 0.7);
+  height: 95px;
+  width: 892px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding-left: 41px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+.preview {
+  background-image: url(assets/back_top.jpg);
+  display: flex;
+  flex-direction: column;
+  width: 1440px;
+  height: 765px;
+  padding-left: 120px;
+  padding-top: 122px;
+  /* border: 1px solid rgb(255, 0, 0); */
+}
+
+.box-preview {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 33px;
+  width: 892px;
+  height: 422px;
+  /* border: 1px solid rgb(179, 255, 0); */
+}
+
+.input-text {
+  height: 50px;
+  width: 560px;
+  background: rgba(255, 255, 255, 0);
+  font-size: 24px;
+  font-weight: 400;
+  font-family: Aleo;
+  font-style: italic;
+  color: rgba(242, 120, 92, 1);
+  opacity: 100%;
+}
+
+.input-text::placeholder {
+  font-size: 24px;
+  font-weight: 400;
+  font-family: Aleo;
+  font-style: italic;
+  color: rgba(242, 120, 92, 1);
+}
+
+/* Убираем границу у place-holder при нажатии */
+.input-text:focus {
+  outline: 0;
+  outline-offset: 0;
+}
+
+/* Убираем place-holder текст при нажатии */
+.input-text:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.input-text:focus::-moz-placeholder {
+  color: transparent;
+  border: 0;
+}
+
+.input-text:focus:-moz-placeholder {
+  color: transparent;
+  border: 0;
+}
+
+.input-text:focus:-ms-input-placeholder {
+  color: transparent;
+  border: 0;
+}
+
+/* плавное появление placeholder */
+input::-webkit-input-placeholder {
+  opacity: 1;
+  transition: opacity 0.9s ease;
+}
+
+input::-moz-placeholder {
+  opacity: 1;
+  transition: opacity 0.9s ease;
+}
+
+input:-moz-placeholder {
+  opacity: 1;
+  transition: opacity 0.9s ease;
+}
+
+input:-ms-input-placeholder {
+  opacity: 1;
+  transition: opacity 0.9s ease;
+}
+
+input:focus::-webkit-input-placeholder {
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+
+input:focus::-moz-placeholder {
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+
+input:focus:-moz-placeholder {
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+
+input:focus:-ms-input-placeholder {
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+
+/* ----------------------------------------------------STEPS */
+.steps {
+  /* border: 1px solid rgb(197, 197, 197); */
+  padding-top: 80px;
+}
+
+h2 {
+  color: rgba(242, 120, 92, 1);
+  font-size: 40px;
+  font-weight: 500;
+  font-family: "Red Hat Text";
+
+}
+
+.box-steps {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.box-icons-steps {
+  display: flex;
+  justify-content: space-between;
+  width: 994px;
+  padding-top: 40px;
+}
+
+.box-icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 16px;
+  background-color: #F2785C;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-text {
+  font-family: "Aleo";
+  color: rgba(13, 96, 111, 1);
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.box-text {
+  padding-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 131px;
+  padding-right: 132px;
+}
+
+.central-span {
+  margin-left: 70px;
+}
+
+/* ----------------------------------------------------DESTINATIONS */
+.box-destinations {
+  padding-top: 97px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.sliderpics {
+  padding-top: 46px;
+  display: flex;
+  gap: 60px;
+}
+
+.sliderpic {
+  border-radius: 16px;
+}
+
+.sliderpic-japan {
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.boxforpic {
+  position: relative;
+}
+
+.slider-text-pic {
+  position: absolute;
+  left: 15px;
+  bottom: 40px;
+  color: rgb(255, 255, 255);
+  font-size: 32px;
+  font-family: "Red Hat Text";
+  font-weight: 500;
+  line-height: 42.34px;
+}
+
+.slider-cirkles {
+  display: flex;
+  padding-top: 24px;
+  gap: 10px;
+}
+
+.cirkle-main {
+  background: rgba(242, 120, 92);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.cirkle {
+  background: rgba(242, 120, 92, 0.5);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.button3 {
+  gap: 10px;
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 228px;
+  height: 59px;
+  background-color: #0D606F;
+  border-radius: 10px;
+  font-size: 24px;
+  color: white;
+  font-family: "Red Hat Text";
+  font-weight: 500;
+  box-shadow: 0px 2px 3px 0px rgba(13, 96, 111, 0.16);
+  box-shadow: 0px 0px 3px 0px rgba(13, 96, 111, 0.08);
+  cursor: pointer;
+}
+
+/* ----------------------------------------------------STORIES */
+.box-stories {
+  padding-top: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.box-for-foto {
+  margin-top: 40px;
+  background-image: url(assets/back_bottom.jpg);
+  width: 1440px;
+  height: 1331px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.box-for-foto-white {
+  padding: 0 120px;
+  padding-top: 40px;
+  width: 1440px;
+  height: 1270px;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+}
+
+.box-pics-white {
+  display: flex;
+  width: 1200px;
+  gap: 40px;
+}
+
+h3 {
+  color: rgba(13, 96, 111, 1);
+  font-family: "Aleo";
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 42px;
+}
+
+.text-stories {
+  color: rgba(13, 96, 111, 1);
+  font-family: "Aleo";
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.text-white {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.pics-travel {
+  box-shadow: 0px 4px 4px 0px rgba(13, 96, 111, 1);
+  border-radius: 16px;
+}
+
+.stories-link {
+  color: rgba(13, 96, 111, 1);
+  text-decoration: underline;
+}
+
+.button4 {
+  gap: 10px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 228px;
+  height: 59px;
+  background-color: #0D606F;
+  border-radius: 10px;
+  font-size: 24px;
+  color: white;
+  font-family: "Red Hat Text";
+  font-weight: 500;
+  box-shadow: 0px 2px 3px 0px rgba(13, 96, 111, 0.16);
+  box-shadow: 0px 0px 3px 0px rgba(13, 96, 111, 0.08);
+  cursor: pointer;
+  padding-right: 5px;
+}
+
+/* ----------------------------------------------------FOOTER */
+
+footer {
+  /* border: 1px solid rgb(255, 0, 0); */
+  width: 729px;
+  height: 34px;
+  margin-left: 470px;
+  margin-bottom: 13px;
+  margin-top: 13px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arr {
+  height: 21px;
+  font-family: "Red Hat Text";
+  font-weight: 500;
+  font-size: 16px;
+  color: rgb(255, 255, 255);
+}
+
+.social-media {
+  display: flex;
+  gap: 20px;
+}
+
+.git-rss {
+  position: absolute;
+  display: flex;
+  gap: 20px;
+  left: 120px;
+}
+
+.git:hover {
+  filter: invert(30%);
+  transition: 0.5s;
+}
+
+.rss:hover {
+  filter: invert(30%);
+  transition: 0.5s;
+}
+
+.sm-item:hover {
+  filter: invert(30%);
+  transition: 0.5s;
+}
