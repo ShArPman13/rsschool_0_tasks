@@ -132,7 +132,6 @@ header {
   box-shadow: 0px 2px 3px 0px rgba(13, 96, 111, 0.16);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   cursor: pointer;
-  padding-top: 5px;
 }
 
 .button2 {
@@ -484,6 +483,7 @@ h3 {
   font-family: "Aleo";
   font-weight: 400;
   font-size: 20px;
+  line-height: 24px;
 }
 
 .text-white {
