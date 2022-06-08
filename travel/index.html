@@ -26,6 +26,11 @@
           <img class="logopic" src="assets/logo.svg" width="30" alt="logotype">
           <div class="logoname">Travel Portal</div>
         </div>
+        <div class="burger">
+          <span class="burgerlines burger-top"></span>
+          <span class="burgerlines burger-middle"></span>
+          <span class="burgerlines burger-bottom"></span>
+        </div>
         <nav class="nav">
           <ul class="nav-list">
             <li class="nav-item"><a href="#how" class="nav-link">How It Works</a></li>
@@ -63,20 +68,20 @@
 
           <div class="box-icons-steps">
             <div class="box-icon velo">
-              <img class="velopic" src="assets/velo.svg" width="50" height="45" alt="velo-picture">
+              <img class="velopic" src="assets/velo.svg" alt="velo-picture">
             </div>
             <div class="box-icon date">
-              <img class="datepic" src="assets/date.svg" width="52" height="52" alt="date-picture">
+              <img class="datepic" src="assets/date.svg" alt="date-picture">
             </div>
             <div class="box-icon plane">
-              <img class="planepic" src="assets/plane.svg" width="60" height="45" alt="plane-picture">
+              <img class="planepic" src="assets/plane.svg" alt="plane-picture">
             </div>
           </div>
 
           <div class="box-text">
             <span class="icon-text">Tell us what you want to do</span>
             <span class="icon-text central-span">Share us preferable dates</span>
-            <span class="icon-text">We will give you recommendations</span>
+            <span class="icon-text right-span">We will give you recommendations</span>
           </div>
         </div>
       </section>
@@ -85,16 +90,16 @@
         <div class="box-destinations">
           <h2>POPULAR DESTINATIONS</h2>
           <div class="sliderpics">
-            <div class="boxforpic">
-              <img class="sliderpic sliderpic-spain" src="assets/spain.png" width="800" height="800" alt="Spain">
+            <div class="boxforpic boxforpic-spain">
+              <img class="sliderpic sliderpic-spain" src="assets/spain.png" alt="Spain">
               <span class="slider-text-pic">SPAIN</span>
             </div>
-            <div class="boxforpic">
-              <img class="sliderpic sliderpic-japan" src="assets/destinations.png" width="800" height="800" alt="Japan">
+            <div class="boxforpic boxforpic-japan">
+              <img class="sliderpic sliderpic-japan" src="assets/destinations.png" alt="Japan">
               <span class="slider-text-pic">JAPAN</span>
             </div>
-            <div class="boxforpic">
-              <img class="sliderpic sliderpic-usa" src="assets/usa.png" width="800" height="800" alt="USA">
+            <div class="boxforpic boxforpic-usa">
+              <img class="sliderpic sliderpic-usa" src="assets/usa.png" alt="USA">
               <span class="slider-text-pic">USA</span>
             </div>
           </div>
@@ -104,7 +109,7 @@
             <span class="cirkle"></span>
           </div>
           <button class="button button3">
-            <img src="assets/arrowforbutton.svg" width="40" height="40" alt="arrow">
+            <img class="arrow" src="assets/arrowforbutton.svg" alt="arrow">
             Find More
           </button>
         </div>
@@ -114,9 +119,12 @@
         <div class="box-stories">
           <h2>TRAVEL STORIES</h2>
           <div class="box-for-foto">
+            <!----------------------------------------------------------------------------------- DESKTOP -->
             <div class="box-for-foto-white">
               <div class="box-pics-white">
-                <img class="pics-travel pic-thailand" src="assets/1pic.jpg" width="400" height="250" alt="Thailand">
+                <div class="divpicstravel">
+                  <img class="pics-travel pic-thailand" src="assets/1pic.jpg" alt="Thailand">
+                </div>
                 <div class="text-white">
                   <h3>10 Photos of Attractive Thailand</h3>
                   <p class="text-stories">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -131,7 +139,9 @@
                 </div>
               </div>
               <div class="box-pics-white">
-                <img class="pics-travel pic-utah" src="assets/2pic.jpg" width="400" height="250" alt="Thailand">
+                <div class="divpicstravel">
+                  <img class="pics-travel pic-utah" src="assets/2pic.jpg" alt="utah">
+                </div>
                 <div class="text-white">
                   <h3>Canyonlands National Park, Utah</h3>
                   <p class="text-stories">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -146,7 +156,9 @@
                 </div>
               </div>
               <div class="box-pics-white">
-                <img class="pics-travel pic-mountains" src="assets/3pic.jpg" width="400" height="250" alt="Mountains">
+                <div class="divpicstravel">
+                  <img class="pics-travel pic-mountains" src="assets/3pic.jpg" alt="Mountains">
+                </div>
                 <div class="text-white">
                   <h3>I left my heart in the Mountains!</h3>
                   <p class="text-stories">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -161,7 +173,9 @@
                 </div>
               </div>
               <div class="box-pics-white">
-                <img class="pics-travel pic-journay" src="assets/4pic.jpg" width="400" height="250" alt="journey">
+                <div class="divpicstravel">
+                  <img class="pics-travel pic-journay" src="assets/4pic.jpg" alt="journey">
+                </div>
                 <div class="text-white">
                   <h3>The Longest journey in my life!</h3>
                   <p class="text-stories">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -175,6 +189,9 @@
                   </p>
                 </div>
               </div>
+              <!----------------------------------------------------------------------------------- DESKTOP -->
+              <!---------------------------------------------------------------------- -->
+
               <button class="button button4">
                 <img src="assets/arrowforbutton.svg" width="40" height="40" alt="see more">
                 See More
