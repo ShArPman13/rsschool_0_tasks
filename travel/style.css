@@ -72,7 +72,6 @@ header {
   height: 90px;
   width: 100%;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-
 }
 
 .container-in-header {
@@ -112,8 +111,7 @@ header {
   display: flex;
   flex-shrink: 0;
   gap: 43px;
-  padding-right: 38px;
-  padding-top: 5px;
+  padding-right: 118px;
 }
 
 .button1 {
@@ -171,7 +169,7 @@ h1 {
   font-weight: 700;
   font-family: Aleo;
   font-style: italic;
-  padding-bottom: 10px;
+  padding-bottom: 13px;
 }
 
 .search-box {
@@ -299,7 +297,7 @@ input:focus:-ms-input-placeholder {
   transition: opacity 0.9s ease;
 }
 
-/* ----------------------------------------------------STEPS */
+/* !----------------------------------------------------STEPS */
 .steps {
   /* border: 1px solid rgb(197, 197, 197); */
   padding-top: 80px;
@@ -310,13 +308,13 @@ h2 {
   font-size: 40px;
   font-weight: 500;
   font-family: "Red Hat Text";
-
 }
 
 .box-steps {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 40px;
 }
 
 .box-icons-steps {
@@ -324,6 +322,13 @@ h2 {
   justify-content: space-between;
   width: 994px;
   padding-top: 40px;
+}
+
+.box-icons {
+  display: flex;
+  justify-content: center;
+  width: 1177px;
+  gap: 160px;
 }
 
 .box-icon {
@@ -334,6 +339,34 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.box-icon-date {
+  align-self: center;
+  justify-self: center;
+  margin-left: 72px;
+}
+
+.box-icon-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.velopic {
+  width: 50px;
+  height: 45px;
+}
+
+.datepic {
+  width: 52px;
+  height: 52px;
+}
+
+.planepic {
+  width: 60px;
+  height: 45px;
 }
 
 .icon-text {
@@ -352,11 +385,7 @@ h2 {
   padding-right: 132px;
 }
 
-.central-span {
-  margin-left: 70px;
-}
-
-/* ----------------------------------------------------DESTINATIONS */
+/* !----------------------------------------------------DESTINATIONS */
 .box-destinations {
   padding-top: 97px;
   display: flex;
@@ -373,6 +402,8 @@ h2 {
 
 .sliderpic {
   border-radius: 16px;
+  width: 800px;
+  height: 800px;
 }
 
 .sliderpic-japan {
@@ -394,10 +425,18 @@ h2 {
   line-height: 42.34px;
 }
 
+.slider-text-pic-usa {
+  margin-bottom: 5px;
+}
+
 .slider-cirkles {
   display: flex;
   padding-top: 24px;
   gap: 10px;
+}
+
+.slider-arrows {
+  display: none;
 }
 
 .cirkle-main {
@@ -415,7 +454,7 @@ h2 {
 }
 
 .button3 {
-  gap: 10px;
+  gap: 11px;
   margin-top: 40px;
   display: flex;
   justify-content: center;
@@ -433,7 +472,7 @@ h2 {
   cursor: pointer;
 }
 
-/* ----------------------------------------------------STORIES */
+/* !----------------------------------------------------STORIES */
 .box-stories {
   padding-top: 80px;
   display: flex;
@@ -492,9 +531,25 @@ h3 {
   gap: 24px;
 }
 
-.pics-travel {
+.divpicstravel {
   box-shadow: 0px 4px 4px 0px rgba(13, 96, 111, 1);
   border-radius: 16px;
+  min-width: 400px;
+  min-height: 250px;
+  width: 400px;
+  height: 250px;
+  overflow: hidden;
+  position: relative;
+}
+
+.pics-travel {
+  position: absolute;
+  width: 100%;
+  object-fit: cover;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 0px;
 }
 
 .stories-link {
@@ -503,7 +558,7 @@ h3 {
 }
 
 .button4 {
-  gap: 10px;
+  gap: 11px;
   margin-top: 10px;
   display: flex;
   justify-content: center;
@@ -519,10 +574,9 @@ h3 {
   box-shadow: 0px 2px 3px 0px rgba(13, 96, 111, 0.16);
   box-shadow: 0px 0px 3px 0px rgba(13, 96, 111, 0.08);
   cursor: pointer;
-  padding-right: 5px;
 }
 
-/* ----------------------------------------------------FOOTER */
+/* todo:----------------------------------------------------FOOTER */
 
 footer {
   /* border: 1px solid rgb(255, 0, 0); */
@@ -556,17 +610,28 @@ footer {
   left: 120px;
 }
 
-.git:hover {
-  filter: invert(30%);
-  transition: 0.5s;
+.git-img {
+  width: 30px;
 }
 
-.rss:hover {
-  filter: invert(30%);
-  transition: 0.5s;
+.rss-img {
+  height: 30px;
+}
+
+.git:hover {
+  transform: scale(1.1);
+}
+
+.rss-img:hover {
+  transform: scale(1.05);
+}
+
+.sm-icons {
+  width: 33px;
+  height: 33px;
 }
 
 .sm-item:hover {
-  filter: invert(30%);
+  transform: scale(1.1);
   transition: 0.5s;
 }
