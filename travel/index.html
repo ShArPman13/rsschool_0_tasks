@@ -26,6 +26,11 @@
           <img class="logopic" src="assets/logo.svg" width="30" alt="logotype">
           <div class="logoname">Travel Portal</div>
         </div>
+        <div class="burger">
+          <span class="burgerlines burger-top"></span>
+          <span class="burgerlines burger-middle"></span>
+          <span class="burgerlines burger-bottom"></span>
+        </div>
         <nav class="nav">
           <ul class="nav-list">
             <li class="nav-item"><a href="#how" class="nav-link">How It Works</a></li>
@@ -55,47 +60,46 @@
           </div>
         </div>
       </section>
-
-
       <section class="steps" id="plan">
         <div class="box-steps">
           <h2>3 STEPS TO THE PERFECT TRIP</h2>
-
-          <div class="box-icons-steps">
-            <div class="box-icon velo">
-              <img class="velopic" src="assets/velo.svg" width="50" height="45" alt="velo-picture">
+          <div class="box-icons">
+            <div class="box-icon-text box-icon-velo">
+              <div class="box-icon box-icon-velo">
+                <img class="velopic" src="assets/velo.svg" alt="velo-picture">
+              </div>
+              <span class="icon-text">Tell us what you want to do</span>
             </div>
-            <div class="box-icon date">
-              <img class="datepic" src="assets/date.svg" width="52" height="52" alt="date-picture">
+            <div class="box-icon-text box-icon-date">
+              <div class="box-icon icon-date">
+                <img class="datepic" src="assets/date.svg" alt="date-picture">
+              </div>
+              <span class="icon-text">Share us preferable dates</span>
             </div>
-            <div class="box-icon plane">
-              <img class="planepic" src="assets/plane.svg" width="60" height="45" alt="plane-picture">
+            <div class="box-icon-text box-icon-plane">
+              <div class="box-icon">
+                <img class="planepic" src="assets/plane.svg" alt="plane-picture">
+              </div>
+              <span class="icon-text right-span">We will give you recommendations</span>
             </div>
-          </div>
-
-          <div class="box-text">
-            <span class="icon-text">Tell us what you want to do</span>
-            <span class="icon-text central-span">Share us preferable dates</span>
-            <span class="icon-text">We will give you recommendations</span>
           </div>
         </div>
       </section>
-
       <section class="destinations" id="dest">
         <div class="box-destinations">
           <h2>POPULAR DESTINATIONS</h2>
           <div class="sliderpics">
-            <div class="boxforpic">
-              <img class="sliderpic sliderpic-spain" src="assets/spain.png" width="800" height="800" alt="Spain">
+            <div class="boxforpic boxforpic-spain">
+              <img class="sliderpic sliderpic-spain" src="assets/spain.png" alt="Spain">
               <span class="slider-text-pic">SPAIN</span>
             </div>
-            <div class="boxforpic">
-              <img class="sliderpic sliderpic-japan" src="assets/destinations.png" width="800" height="800" alt="Japan">
+            <div class="boxforpic boxforpic-japan">
+              <img class="sliderpic sliderpic-japan" src="assets/destinations.png" alt="Japan">
               <span class="slider-text-pic">JAPAN</span>
             </div>
-            <div class="boxforpic">
-              <img class="sliderpic sliderpic-usa" src="assets/usa.png" width="800" height="800" alt="USA">
-              <span class="slider-text-pic">USA</span>
+            <div class="boxforpic boxforpic-usa">
+              <img class="sliderpic sliderpic-usa" src="assets/usa.png" alt="USA">
+              <span class="slider-text-pic slider-text-pic-usa">USA</span>
             </div>
           </div>
           <div class="slider-cirkles">
@@ -103,8 +107,12 @@
             <span class="cirkle-main"></span>
             <span class="cirkle"></span>
           </div>
+          <div class="slider-arrows">
+            <img class="left-arrow" src="assets/arrow-slider.svg">
+            <img class="right-arrow" src="assets/arrow-slider.svg">
+          </div>
           <button class="button button3">
-            <img src="assets/arrowforbutton.svg" width="40" height="40" alt="arrow">
+            <img class="arrow" src="assets/arrowforbutton.svg" alt="arrow">
             Find More
           </button>
         </div>
@@ -116,7 +124,9 @@
           <div class="box-for-foto">
             <div class="box-for-foto-white">
               <div class="box-pics-white">
-                <img class="pics-travel pic-thailand" src="assets/1pic.jpg" width="400" height="250" alt="Thailand">
+                <div class="divpicstravel">
+                  <img class="pics-travel pic-thailand" src="assets/_1pic.jpg" alt="Thailand">
+                </div>
                 <div class="text-white">
                   <h3>10 Photos of Attractive Thailand</h3>
                   <p class="text-stories">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -131,7 +141,9 @@
                 </div>
               </div>
               <div class="box-pics-white">
-                <img class="pics-travel pic-utah" src="assets/2pic.jpg" width="400" height="250" alt="Thailand">
+                <div class="divpicstravel">
+                  <img class="pics-travel pic-utah" src="assets/_2pic.jpg" alt="utah">
+                </div>
                 <div class="text-white">
                   <h3>Canyonlands National Park, Utah</h3>
                   <p class="text-stories">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -146,7 +158,9 @@
                 </div>
               </div>
               <div class="box-pics-white">
-                <img class="pics-travel pic-mountains" src="assets/3pic.jpg" width="400" height="250" alt="Mountains">
+                <div class="divpicstravel">
+                  <img class="pics-travel pic-mountains" src="assets/_3pic.jpg" alt="Mountains">
+                </div>
                 <div class="text-white">
                   <h3>I left my heart in the Mountains!</h3>
                   <p class="text-stories">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -161,7 +175,9 @@
                 </div>
               </div>
               <div class="box-pics-white">
-                <img class="pics-travel pic-journay" src="assets/4pic.jpg" width="400" height="250" alt="journey">
+                <div class="divpicstravel">
+                  <img class="pics-travel pic-journay" src="assets/_4pic.jpg" alt="journey">
+                </div>
                 <div class="text-white">
                   <h3>The Longest journey in my life!</h3>
                   <p class="text-stories">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -176,28 +192,26 @@
                 </div>
               </div>
               <button class="button button4">
-                <img src="assets/arrowforbutton.svg" width="40" height="40" alt="see more">
+                <img class="arrow" src="assets/arrowforbutton.svg" alt="see more">
                 See More
               </button>
             </div>
             <footer>
               <ul class="git-rss">
-                <li><a class="git" href="https://github.com/ShArPman13"><img src="assets/git_white.svg" width="30"
-                      height="30" alt="git"></a>
+                <li class="git"><a class="git" href="https://github.com/ShArPman13"><img class="git-img"
+                      src="assets/git_white.svg" alt="git"></a>
                 </li>
-                <li><a class="rss" href="https://rs.school/js-stage0/"><img src="assets/rss_white.svg" height="30"
+                <li><a class="rss" href="https://rs.school/js-stage0/"><img class="rss-img" src="assets/rss_white.svg"
                       alt="rss"></a>
                 </li>
               </ul>
               <span class="arr">All Rights Reserved © Travel Portal</span>
               <ul class="social-media">
-                <li class="sm-item"><a href="#13"><img src="assets/akar-icons_instagram-fill.svg" width="33" height="33"
+                <li class="sm-item"><a href="#13"><img class="sm-icons" src="assets/akar-icons_instagram-fill.svg"
                       alt="ins"></a>
                 </li>
-                <li class="sm-item"><a href="#13"><img src="assets/akar-icons_video.svg" width="33" height="33"
-                      alt="video"></a></li>
-                <li class="sm-item"><a href="#13"><img src="assets/akar-icons_twitter-fill.svg" width="33" height="33"
-                      alt="twitter"></a>
+                <li class="sm-item"><a href="#13"><img src="assets/akar-icons_video.svg" alt="video"></a></li>
+                <li class="sm-item"><a href="#13"><img src="assets/akar-icons_twitter-fill.svg" alt="twitter"></a>
                 </li>
               </ul>
             </footer>
