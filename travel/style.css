@@ -10,7 +10,7 @@
 
 a {
   text-decoration: none;
-  color: white;
+  color: inherit;
 }
 
 ul,
@@ -64,7 +64,6 @@ body {
 
 header {
   position: absolute;
-  /* top: 0; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -109,7 +108,7 @@ header {
   font-family: "Red Hat Text";
   font-weight: 500;
   display: flex;
-  flex-shrink: 0;
+
   gap: 43px;
   padding-right: 118px;
 }
@@ -152,7 +151,15 @@ header {
 
 .button:active {
   transform: scale(0.97);
-  background-color: #11515c;
+}
+
+.button:hover {
+  background-color: #0d3c45;
+  transition: 0.3s;
+}
+
+button {
+  transition: all ease 0.5s;
 }
 
 h1 {
@@ -175,7 +182,7 @@ h1 {
 .search-box {
   background-color: rgba(255, 255, 255, 0.7);
   height: 95px;
-  width: 892px;
+  max-width: 892px;
   border-radius: 16px;
   display: flex;
   align-items: center;
@@ -187,13 +194,14 @@ h1 {
 main {
   display: flex;
   flex-direction: column;
+
 }
 
 .preview {
   background-image: url(assets/back_top.jpg);
   display: flex;
   flex-direction: column;
-  width: 1440px;
+  max-width: 1440px;
   height: 765px;
   padding-left: 120px;
   padding-top: 122px;
@@ -205,14 +213,15 @@ main {
   flex-direction: column;
   justify-content: space-between;
   padding-bottom: 33px;
-  width: 892px;
+  max-width: 892px;
   height: 422px;
+  margin-right: 120px;
   /* border: 1px solid rgb(179, 255, 0); */
 }
 
 .input-text {
   height: 50px;
-  width: 560px;
+  max-width: 560px;
   background: rgba(255, 255, 255, 0);
   font-size: 24px;
   font-weight: 400;
@@ -320,14 +329,14 @@ h2 {
 .box-icons-steps {
   display: flex;
   justify-content: space-between;
-  width: 994px;
+  max-width: 994px;
   padding-top: 40px;
 }
 
 .box-icons {
   display: flex;
   justify-content: center;
-  width: 1177px;
+  max-width: 1177px;
   gap: 160px;
 }
 
@@ -378,7 +387,7 @@ h2 {
 
 .box-text {
   padding-top: 30px;
-  width: 100%;
+  max-width: 100%;
   display: flex;
   justify-content: space-between;
   padding-left: 131px;
@@ -398,12 +407,14 @@ h2 {
   padding-top: 46px;
   display: flex;
   gap: 60px;
+  justify-content: center;
+  width: 100%;
 }
 
 .sliderpic {
   border-radius: 16px;
-  width: 800px;
-  height: 800px;
+  max-width: 100%;
+  height: 100%;
 }
 
 .sliderpic-japan {
@@ -412,6 +423,8 @@ h2 {
 
 .boxforpic {
   position: relative;
+  flex-shrink: 0;
+  width: 55.55%;
 }
 
 .slider-text-pic {
@@ -484,7 +497,7 @@ h2 {
 .box-for-foto {
   margin-top: 40px;
   background-image: url(assets/back_bottom.jpg);
-  width: 1440px;
+  max-width: 1440px;
   height: 1331px;
   display: flex;
   flex-direction: column;
@@ -494,7 +507,7 @@ h2 {
 .box-for-foto-white {
   padding: 0 120px;
   padding-top: 40px;
-  width: 1440px;
+  max-width: 1440px;
   height: 1270px;
   background: rgba(255, 255, 255, 0.7);
   display: flex;
@@ -505,7 +518,7 @@ h2 {
 
 .box-pics-white {
   display: flex;
-  width: 1200px;
+  max-width: 1200px;
   gap: 40px;
 }
 
@@ -536,7 +549,7 @@ h3 {
   border-radius: 16px;
   min-width: 400px;
   min-height: 250px;
-  width: 400px;
+  max-width: 400px;
   height: 250px;
   overflow: hidden;
   position: relative;
@@ -544,7 +557,7 @@ h3 {
 
 .pics-travel {
   position: absolute;
-  width: 100%;
+  max-width: 100%;
   object-fit: cover;
   left: 50%;
   top: 50%;
@@ -620,10 +633,12 @@ footer {
 
 .git:hover {
   transform: scale(1.1);
+  transition: 0.5s;
 }
 
 .rss-img:hover {
   transform: scale(1.05);
+  transition: 0.5s;
 }
 
 .sm-icons {
@@ -634,4 +649,8 @@ footer {
 .sm-item:hover {
   transform: scale(1.1);
   transition: 0.5s;
+}
+
+.read-more {
+  display: none;
 }
