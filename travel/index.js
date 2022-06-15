@@ -30,3 +30,35 @@ console.log(`
 ссылки в футере ведут на гитхаб автора проекта и на страницу курса https://rs.school/js-stage0/ +5
 интерактивность включает в себя не только изменение внешнего вида курсора, например, при помощи свойства cursor: pointer, но и другие визуальные эффекты, например, изменение цвета фона или цвета шрифта. Если в макете указаны стили при наведении и клике, для элемента указываем эти стили. Если в макете стили не указаны, реализуете их по своему усмотрению, руководствуясь общим стилем макета +5
 обязательное требование к интерактивности: плавное изменение внешнего вида элемента при наведении и клике не влияющее на соседние элементы +5`);
+
+const hamburger = document.querySelector('.burger');
+const menu = document.querySelector('.nav');
+
+function toggleMenu() {
+  hamburger.classList.toggle('open');
+  menu.classList.toggle('open');
+}
+hamburger.addEventListener('click', toggleMenu);
+
+
+// function closeMenu() {
+//   hamburger.classList.remove('open');
+//   menu.classList.remove('open');
+// }
+// const navLinks = document.querySelectorAll('.nav-link');
+// navLinks.forEach((elem) => elem.addEventListener('click', closeMenu));
+
+// const menuList = document.querySelector('.nav-list');
+
+menu.addEventListener('click', closeMenu);
+
+function closeMenu(e) {
+  if (e.target.classList.contains('nav-link')) {
+    hamburger.classList.remove('open');
+    menu.classList.remove('open');
+  }
+}
+
+
+
+
