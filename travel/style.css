@@ -42,7 +42,6 @@ body {
   color: rgb(255, 255, 255);
   font-weight: 400;
   font-style: normal;
-  overflow-x: hidden;
 }
 
 /* Нормолайз к css: */
@@ -52,14 +51,18 @@ body {
   max-width: 1440px;
   width: 100%;
   margin: 0px auto;
+  overflow-x: hidden;
 }
 
 body {
+  width: 100vw;
+  overflow-x: hidden;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
 }
 
 header {
@@ -681,6 +684,8 @@ footer {
     box-shadow: none;
     padding-right: 25px;
     padding-left: 15px;
+    z-index: 1;
+
   }
 
   .container-in-header {
@@ -755,11 +760,33 @@ footer {
   }
 
   .burger.open {
-    z-index: 14;
+    z-index: 2;
     position: absolute;
-    left: 235px;
+    left: 60%;
     top: -30px;
     opacity: 50%;
+    padding-right: 50px;
+  }
+
+  .burger.open {
+    animation: bloom 0.5s ease-out;
+  }
+
+  @keyframes bloom {
+    0% {
+      left: 0px;
+      top: -60px;
+    }
+
+    90% {
+      top: -60px;
+      /* z-index: 0; */
+    }
+
+    100% {
+      /* z-index: 1; */
+      left: 60%;
+    }
   }
 
   .burgerlines {
@@ -782,18 +809,6 @@ footer {
     transform: rotate(-45deg) translate(-5px, 4px);
   }
 
-  /* .burgerlines::after {
-    content: '';
-    position: absolute;
-    background-color: white;
-    height: 2.6px;
-    width: 26px;
-    border-radius: 5px;
-    display: block;
-    bottom: 20px;
-  } */
-
-  /* .nav, */
   h1,
   .recomend,
   .button1 {
@@ -801,12 +816,37 @@ footer {
   }
 
   /* -------------------------------------------------Адаптивное МЕНЮ */
+  .dark {
+    position: absolute;
+    top: -43px;
+    left: 0;
+    height: calc(100vh + 43px);
+    width: 100%;
+    z-index: 1;
+    animation: darkDelay 0.5s ease-out;
+    background-color: rgba(0, 0, 0, 0.35);
+  }
+
+  @keyframes darkDelay {
+    0% {
+      background-color: rgba(0, 0, 0, 0);
+    }
+
+    50% {
+      background-color: rgba(0, 0, 0, 0.25);
+    }
+
+    100% {
+      background-color: rgba(0, 0, 0, 0.35);
+    }
+  }
+
   .nav {
     flex-direction: column;
     font-size: 16px;
     line-height: 21px;
-    position: absolute;
-    z-index: 13;
+    position: fixed;
+    z-index: 1;
     top: -43px;
     right: -165px;
     background: rgba(242, 120, 92, 1);
@@ -818,7 +858,6 @@ footer {
     padding-right: 15px;
     padding-left: 44px;
     border-radius: 13px;
-
   }
 
   .nav.open {
@@ -1244,6 +1283,7 @@ footer {
 
 @media (min-width: 970px) and (max-width: 1399px) {
 
+
   .text-stories {
     color: rgba(13, 96, 111, 1);
     font-family: "Aleo";
@@ -1297,8 +1337,102 @@ footer {
     transition: 0.3s;
   }
 
+  .dark {
+    position: absolute;
+    top: -43px;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 1;
+    animation: darkDelay 0.5s ease-out;
+    background-color: rgba(0, 0, 0, 0.35);
+  }
+
+  @keyframes darkDelay {
+    0% {
+      background-color: rgba(0, 0, 0, 0);
+    }
+
+    50% {
+      background-color: rgba(0, 0, 0, 0.25);
+    }
+
+    100% {
+      background-color: rgba(0, 0, 0, 0.35);
+    }
+  }
+
+  /* !---------------------------------------------------------------- */
+  .burger.open {
+    opacity: 50%;
+  }
+
+  .burger.open .burger-middle {
+    opacity: 0;
+  }
+
+  .burger.open .burger-bottom {
+    transform: rotate(45deg) translate(-5px, -4px);
+  }
+
+  .burger.open .burger-top {
+    transform: rotate(-45deg) translate(-5px, 4px);
+  }
+
+  .nav {
+    flex-direction: column;
+    font-size: 16px;
+    line-height: 21px;
+    position: absolute;
+    /* z-index: 15; */
+    top: 0;
+    right: -200px;
+    background: rgba(242, 120, 92, 1);
+    box-shadow: 0px 4px 3px 0px rgba(13, 96, 111, 0.25);
+    color: white;
+    width: 165px;
+    height: 251px;
+    padding-top: 44px;
+    padding-right: 15px;
+    padding-left: 44px;
+    border-radius: 13px;
+  }
+
+  .nav.open {
+    z-index: 1;
+    top: 70px;
+    right: 0;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .nav-link-how {
+    order: -2;
+  }
+
+  .nav-link-dest {
+    order: -1;
+  }
+
+  .nav-link-trip {
+    order: 0;
+  }
+
+  .nav-item-hide {
+    display: block;
+  }
+
+  .button1 {
+    display: none;
+  }
+
+  /* !---------------------------------------------------- */
+
   .container-in-header {
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     gap: 10px;
     padding: 0 50px;
@@ -1309,6 +1443,8 @@ footer {
     flex-direction: column;
     align-items: center;
     gap: 4px;
+    margin-top: 5px;
+    z-index: 2;
   }
 
   .burgerlines {
@@ -1316,10 +1452,6 @@ footer {
     height: 2.6px;
     width: 26px;
     border-radius: 5px;
-  }
-
-  .nav {
-    display: none;
   }
 
   h1 {

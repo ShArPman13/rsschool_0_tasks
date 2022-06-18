@@ -31,33 +31,47 @@ console.log(`
 интерактивность включает в себя не только изменение внешнего вида курсора, например, при помощи свойства cursor: pointer, но и другие визуальные эффекты, например, изменение цвета фона или цвета шрифта. Если в макете указаны стили при наведении и клике, для элемента указываем эти стили. Если в макете стили не указаны, реализуете их по своему усмотрению, руководствуясь общим стилем макета +5
 обязательное требование к интерактивности: плавное изменение внешнего вида элемента при наведении и клике не влияющее на соседние элементы +5`);
 
+
 const hamburger = document.querySelector('.burger');
 const menu = document.querySelector('.nav');
+const header = document.querySelector('.header');
+const body = document.querySelector('body');
+
 
 function toggleMenu() {
-  hamburger.classList.toggle('open');
-  menu.classList.toggle('open');
+  if (!(hamburger.classList.contains('open'))) { //если бургер закрыт - не содержит .open
+    hamburger.classList.add('open');
+    menu.classList.add('open');
+    header.insertAdjacentHTML('afterbegin', '<div id="dark" class="dark"></div>');
+    body.style.overflowY = 'hidden'; //запрещаем скролл при открытии бургера
+  }
+  else if (hamburger.classList.contains('open')) { //если бургер открыт- содержит .open
+    hamburger.classList.remove('open');
+    menu.classList.remove('open');
+    dark.remove(); // ! работает без объявления const dark !?!?
+    body.style.overflowY = null;//разрешаем скролл при закрытии бургера
+  }
 }
+
 hamburger.addEventListener('click', toggleMenu);
 
 
-// function closeMenu() {
-//   hamburger.classList.remove('open');
-//   menu.classList.remove('open');
-// }
-// const navLinks = document.querySelectorAll('.nav-link');
-// navLinks.forEach((elem) => elem.addEventListener('click', closeMenu));
-
-// const menuList = document.querySelector('.nav-list');
-
-menu.addEventListener('click', closeMenu);
-
 function closeMenu(e) {
-  if (e.target.classList.contains('nav-link')) {
+  if (e.target.classList.contains('nav-link')) { //если клик по пунктам меню
     hamburger.classList.remove('open');
     menu.classList.remove('open');
+    dark.remove()
+    body.style.overflowY = null;
+  }
+  else if (e.target.classList.contains('dark')) { //если клик по темному фону
+    hamburger.classList.remove('open');
+    menu.classList.remove('open');
+    dark.remove();
+    body.style.overflowY = null;
   }
 }
+
+header.addEventListener('click', closeMenu);
 
 
 
