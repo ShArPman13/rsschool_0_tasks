@@ -1829,9 +1829,14 @@ footer {
     left: 0;
   }
 
-  100% {
+  99% {
     background-color: rgba(0, 0, 0, 0);
     left: 0;
+  }
+
+  100% {
+    background-color: rgba(0, 0, 0, 0);
+    left: -100%;
   }
 }
 
