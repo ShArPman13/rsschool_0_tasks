@@ -1,34 +1,120 @@
 console.log(`
-[Самооценка 100/100]
+[Самооценка 75/75]
 
-Вёрстка валидная +10
-Вёрстка семантическая +20
-В коде странице присутствуют следующие элементы (указано минимальное количество, может быть больше):
-<header>, <main>, <footer> +3
-четыре элемента <section> (по количеству секций) +3
-только один заголовок <h1> +3
-три заголовка <h2> (количество секций минус одна, у которой заголовок <h1>) +3
-один элемент <nav> (панель навигации) +3
-два списка ul > li > a (панель навигации, ссылки на соцсети) +3
-четыре кнопки <button> +2
-Вёрстка соответствует макету +48
+Вёрстка соответствует макету. Ширина экрана 390px +48
 блок <header> +6
 секция preview +9
 секция steps +9
 секция destinations +9
 секция stories +9
 блок <footer> +6
-Требования к css + 12
-для построения сетки используются флексы или гриды +2
-при уменьшении масштаба страницы браузера вёрстка размещается по центру, а не сдвигается в сторону +2
-фоновый цвет тянется на всю ширину страницы +2
-иконки добавлены в формате .svg. SVG может быть добавлен любым способом. Обращаем внимание на формат, а не на способ добавления +2
-изображения добавлены в формате .jpg +2
-есть favicon +2
-Интерактивность, реализуемая через css +20
-плавная прокрутка по якорям +5
-ссылки в футере ведут на гитхаб автора проекта и на страницу курса (допускается добавление своих вариантов иконок github или RSSchool) https://rs.school/js-stage0/ +5
-интерактивность включает в себя не только изменение внешнего вида курсора, например, при помощи свойства cursor: pointer, но и другие визуальные эффекты, например, изменение цвета фона или цвета шрифта. Если в макете указаны стили при наведении и клике, для элемента указываем эти стили. Если в макете стили не указаны, реализуете их по своему усмотрению, руководствуясь общим стилем макета +5
-обязательное требование к интерактивности: плавное изменение внешнего вида элемента при наведении и клике не влияющее на соседние элементы +5`);
+Ни на одном из разрешений до 320px включительно не появляется горизонтальная полоса прокрутки. Весь контент страницы при этом сохраняется: не обрезается и не удаляется +15
+нет полосы прокрутки при ширине страницы от 1440рх до 390px +7
+нет полосы прокрутки при ширине страницы от 390px до 320рх +8
+На ширине экрана 390рх и меньше реализовано адаптивное меню +22
+при ширине страницы 390рх панель навигации скрывается, появляется бургер-иконка +2
+при нажатии на бургер-иконку плавно появляется адаптивное меню +4
+адаптивное меню соответствует макету +4
+при нажатии на крестик адаптивное меню плавно скрывается уезжая за экран +4
+ссылки в адаптивном меню работают, обеспечивая плавную прокрутку по якорям +4 (все кроме Account, она пока что просто закрывает меню)
+при клике по ссылке в адаптивном меню адаптивное меню плавно скрывается, также скрытие меню происходит если сделать клик вне данного окна +4`);
 
 
+
+const hamburger = document.querySelector('.burger');
+const menu = document.querySelector('.nav');
+const header = document.querySelector('.header');
+const body = document.querySelector('body');
+const pop = document.querySelector('.popup__body');
+const loginBtn = document.querySelector('.button1')
+const dark = document.querySelector('.dark');
+const signIn = document.querySelector('.btn-signin');
+const account = document.querySelector('.link-account');
+const pressRegister = document.querySelector('.register');
+const pressLogin = document.querySelector('.login');
+const pop2 = document.querySelector('.popup-register__body');
+
+
+// function openPopup() {
+//   dark.classList.add('open');
+//   pop.classList.add('open');
+//   pop.style.opacity = '1';
+//   body.style.overflowY = 'hidden';
+// }
+// loginBtn.addEventListener('click', openPopup);
+
+// function openPopupByAccount() {
+//   pop.classList.add('open');
+//   pop.style.opacity = '1';
+//   body.style.overflowY = 'hidden';
+// }
+// account.addEventListener('click', openPopupByAccount);
+
+// function changePopup() {
+//   pop.classList.toggle('open');
+//   pop2.classList.toggle('open');
+//   document.getElementById('input2-text-popup-mail').value = '';
+//   document.getElementById('input2-text-popup-pass').value = '';
+//   document.getElementById('input-text-popup-mail').value = '';
+//   document.getElementById('input-text-popup-pass').value = '';
+// }
+// pressRegister.addEventListener('click', changePopup);
+// pressLogin.addEventListener('click', changePopup);
+
+// function openAlert() {
+//   const input = document.getElementById("input-text-popup-mail").value;
+//   document.getElementById('input-text-popup-mail').value = '';
+//   const input2 = document.getElementById("input-text-popup-pass").value;
+//   document.getElementById('input-text-popup-pass').value = '';
+
+//   alert(`E-mail: ${input} \nPassword: ${input2}`);
+// }
+// signIn.addEventListener('click', openAlert);
+
+
+
+function toggleMenu() {
+  if (!(hamburger.classList.contains('open'))) { //если бургер закрыт - не содержит .open
+    hamburger.classList.add('open');
+    menu.classList.add('open');
+    dark.classList.add('open');
+    body.style.overflowY = 'hidden'; //запрещаем скролл при открытии бургера
+  }
+  else if (hamburger.classList.contains('open')) { //если бургер открыт- содержит .open
+    hamburger.classList.remove('open');
+    menu.classList.remove('open');
+    dark.classList.remove('open');
+    body.style.overflowY = null;//разрешаем скролл при закрытии бургера
+  }
+}
+
+hamburger.addEventListener('click', toggleMenu);
+
+
+function closeMenu(e) {
+
+  if (e.target.classList.contains('link-account')) { //если клик по пункту account
+    // hamburger.style.zIndex = '0';
+    hamburger.classList.remove('open');
+    menu.classList.remove('open');
+    body.style.overflowY = null;
+    dark.classList.remove('open');
+  }
+  else if (e.target.classList.contains('nav-link')) { //если клик по пунктам меню
+    hamburger.classList.remove('open');
+    menu.classList.remove('open');
+    dark.classList.remove('open');
+    body.style.overflowY = null;
+  }
+  else if (e.target.classList.contains('dark')) { //если клик по темному фону
+    hamburger.classList.remove('open');
+    menu.classList.remove('open');
+    body.style.overflowY = null;
+    // pop.classList.remove('open');
+    // pop.style.opacity = '1';
+    // pop2.classList.remove('open');
+    dark.classList.remove('open');
+  }
+}
+
+body.addEventListener('click', closeMenu);
