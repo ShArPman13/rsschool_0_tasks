@@ -663,9 +663,9 @@ footer {
 
 /* todo: ADAPTIVE-------------------------390px---------------------------ADAPTIVE */
 @media (max-width: 390px) {
-  * {
+  /* * {
     transition: 0.3s;
-  }
+  } */
 
   main {
     align-items: center;
@@ -1809,16 +1809,34 @@ footer {
 .dark {
   position: absolute;
   top: -43px;
-  left: -100%;
+  /* left: -100%; */
   height: calc(100vh + 43px);
   width: 100%;
   background-color: rgba(0, 0, 0, 0);
   transition: 1s;
   opacity: 0;
-  animation: darkDelaystart 1s ease-in;
+  animation: darkDelaystart 0.5s ease-in;
+  z-index: -1;
 }
 
 @keyframes darkDelaystart {
+  0% {
+    background-color: rgba(0, 0, 0, 0.45);
+    left: 0;
+  }
+
+  50% {
+    background-color: rgba(0, 0, 0, 0.25);
+    left: 0;
+  }
+
+  100% {
+    background-color: rgba(0, 0, 0, 0);
+    left: 0;
+  }
+}
+
+/* @keyframes darkDelaystart {
   0% {
     opacity: 100%;
     left: 0;
@@ -1834,7 +1852,7 @@ footer {
     opacity: 0;
     left: -100%;
   }
-}
+} */
 
 .dark.open {
   position: absolute;
