@@ -1864,7 +1864,7 @@ footer {
   left: 0;
   height: calc(100vh + 43px);
   width: 100%;
-  animation: darkDelay 0.5s ease-out;
+  animation: darkDelay 0.5s;
   background-color: rgba(0, 0, 0, 0.45);
   opacity: 100%;
 }
@@ -1872,15 +1872,22 @@ footer {
 @keyframes darkDelay {
   0% {
     background-color: rgba(0, 0, 0, 0);
+    left: -100%;
+  }
+
+  1% {
+    background-color: rgba(0, 0, 0, 0);
     left: 0;
   }
 
   50% {
     background-color: rgba(0, 0, 0, 0.25);
+    left: 0;
   }
 
   100% {
     background-color: rgba(0, 0, 0, 0.45);
+    left: 0;
   }
 }
 
