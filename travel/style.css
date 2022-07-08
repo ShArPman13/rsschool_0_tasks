@@ -1809,14 +1809,13 @@ footer {
 .dark {
   position: absolute;
   top: -43px;
-  /* left: -100%; */
+  left: -100%;
   height: calc(100vh + 43px);
   width: 100%;
   background-color: rgba(0, 0, 0, 0);
   transition: 1s;
   opacity: 0;
   animation: darkDelaystart 0.5s ease-in;
-  z-index: -1;
 }
 
 @keyframes darkDelaystart {
@@ -1860,7 +1859,6 @@ footer {
   left: 0;
   height: calc(100vh + 43px);
   width: 100%;
-  z-index: 1;
   animation: darkDelay 0.5s ease-out;
   background-color: rgba(0, 0, 0, 0.45);
   opacity: 100%;
