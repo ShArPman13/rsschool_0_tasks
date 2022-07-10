@@ -406,12 +406,47 @@ h2 {
   overflow: hidden;
 }
 
+/* --------------------------------------Делаем SLIDER-------------------------------------- */
 .sliderpics {
+  position: relative;
   padding-top: 46px;
   display: flex;
   gap: 60px;
   justify-content: center;
   width: 100%;
+  left: 0;
+}
+
+@keyframes move-left {
+  from {
+    left: 0;
+  }
+
+  to {
+    left: -61%;
+  }
+}
+
+@keyframes move-right {
+  from {
+    left: 0;
+  }
+
+  to {
+    left: 61%;
+  }
+}
+
+.transition-right {
+  animation-name: move-right;
+  animation-duration: 1s;
+  left: 61%;
+}
+
+.transition-left {
+  animation-name: move-left;
+  animation-duration: 1s;
+  left: -61%;
 }
 
 .sliderpic {
@@ -835,6 +870,7 @@ footer {
     padding-right: 15px;
     padding-left: 44px;
     border-radius: 13px;
+    transition: 0.5s;
   }
 
   .nav.open {
@@ -1018,6 +1054,39 @@ footer {
   .sliderpics {
     position: relative;
     padding-top: 22px;
+  }
+
+  /* СЛАЙДЕР------------------------------- mobile---------------------------------- */
+  @keyframes move-left {
+    from {
+      left: 0;
+    }
+
+    to {
+      left: -108%;
+    }
+  }
+
+  @keyframes move-right {
+    from {
+      left: 0;
+    }
+
+    to {
+      left: 108%;
+    }
+  }
+
+  .transition-right {
+    animation-name: move-right;
+    animation-duration: 0.5s;
+    left: 108%;
+  }
+
+  .transition-left {
+    animation-name: move-left;
+    animation-duration: 0.5s;
+    left: -108%;
   }
 
   .slider-cirkles {
