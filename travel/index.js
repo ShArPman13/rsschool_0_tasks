@@ -118,3 +118,41 @@ function closeMenu(e) {
 }
 
 body.addEventListener('click', closeMenu);
+
+
+
+// slider-------------------------------
+
+// const BTN_LEFT = document.querySelector('.sliderpic-left');
+// const BTN_RIGHT = document.querySelector('.sliderpic-right');
+// const slider = document.querySelector('.sliderpics');
+
+
+// const moveLeft = () => {
+//   slider.classList.add('transition-left');
+// }
+
+// const moveRight = () => {
+//   slider.classList.add('transition-right');
+// }
+
+// BTN_RIGHT.addEventListener('click', moveLeft);
+// BTN_LEFT.addEventListener('click', moveRight);
+
+
+
+// slider.addEventListener('animationend', (e) => {
+//   if (e.animationName === 'move-left') {
+//     slider.classList.remove('transition-left');
+//     const leftItems = document.querySelector('.sliderpic-right').innerHTML;
+//     document.querySelector('.slider-active').innerHTML = leftItems;
+//     document.querySelector('.sliderpic-right').innerHTML = document.querySelector('.sliderpic-left').innerHTML
+
+//   } else {
+//     slider.classList.remove('transition-right');
+//     const righttItems = document.querySelector('.sliderpic-left').innerHTML;
+//     document.querySelector('.slider-active').innerHTML = righttItems;
+//     document.querySelector('.sliderpic-left').innerHTML = document.querySelector('.sliderpic-right').innerHTML
+//   }
+
+// })
