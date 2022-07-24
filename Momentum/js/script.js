@@ -1,3 +1,5 @@
+import playList from "./playlist.js";
+
 const time = document.querySelector('.time');
 const myDate = document.querySelector('.date');
 const options = { weekday: 'long', month: 'long', day: 'numeric' };
@@ -7,6 +9,7 @@ const greetings = document.querySelector('.greeting');
 const hours = date.getHours();
 
 const nameSharp = document.querySelector('.name');
+const localSettings = {};
 
 function showTime() {
   const date = new Date();
@@ -35,19 +38,6 @@ function getTimeOfDay() {
     return timeOfDay[2];
   }
 }
-
-function setLocalStorage() {
-  localStorage.setItem('nameSharp', nameSharp.value);
-}
-window.addEventListener('beforeunload', setLocalStorage)
-
-function getLocalStorage() {
-  if (localStorage.getItem('nameSharp')) {
-    nameSharp.value = localStorage.getItem('nameSharp');
-  }
-}
-window.addEventListener('load', getLocalStorage);
-
 
 
 function getRandomNum() {
@@ -99,3 +89,137 @@ function getSlidePrev() {
 }
 
 slidePrev.addEventListener('click', getSlidePrev);
+
+//------------------------------WEATHER---------------------------------------------
+
+const weatherIcon = document.querySelector('.weather-icon');
+const temperature = document.querySelector('.temperature');
+const weatherDescription = document.querySelector('.weather-description');
+const windSpeed = document.querySelector('.wind-speed');
+const humidity = document.querySelector('.humidity');
+const city = document.querySelector('.city');
+const defaultUrl = `https://api.openweathermap.org/data/2.5/weather?q=Минск&lang=en&appid=a7d6cf5c06b60ebd06921df6a6b2725a&units=metric`;
+
+async function getWeather(url) {
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+
+    weatherIcon.className = 'weather-icon owf';
+    weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+    temperature.textContent = `${Math.round(data.main.temp)}°C`;
+    weatherDescription.textContent = data.weather[0].description;
+    windSpeed.textContent = `Wind Speed: ${data.wind.speed}`;
+    humidity.textContent = `Humidity: ${data.main.humidity}`
+  } catch (error) {
+    weatherIcon.className = 'weather-icon owf';
+    temperature.textContent = '';
+    windSpeed.textContent = '';
+    humidity.textContent = '';
+    weatherDescription.textContent = `Error! City ${city.value} not found.`;
+  }
+}
+// getWeather(defaultUrl)\
+
+city.addEventListener('change', () => {
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=en&appid=a7d6cf5c06b60ebd06921df6a6b2725a&units=metric`;
+  localSettings.url = url;
+  getWeather(url);
+})
+
+function setLocalStorage() {
+  localStorage.setItem('url', localSettings.url);
+  localStorage.setItem('nameSharp', nameSharp.value);
+}
+window.addEventListener('beforeunload', setLocalStorage)
+
+function getLocalStorage() {
+  if (localStorage.getItem('url')) {
+    localSettings.url = localStorage.getItem('url');
+    getWeather(localSettings.url);
+  } else {
+    getWeather(defaultUrl);
+  }
+  if (localStorage.getItem('nameSharp')) {
+    nameSharp.value = localStorage.getItem('nameSharp');
+  }
+}
+window.addEventListener('load', getLocalStorage);
+city.placeholder = 'Enter city';
+//------------------------------QUOTES---------------------------------------------
+
+const quote = document.querySelector('.quote');
+const author = document.querySelector('.author');
+const changeQuote = document.querySelector('.change-quote');
+
+async function getQuotes() {
+  const quotes = '/assets/quotes.json';
+  const res = await fetch(quotes);
+  const data = await res.json();
+  let randomQuote = Math.floor(Math.random() * 101)
+  quote.textContent = data[randomQuote].quote;
+  author.textContent = data[randomQuote].author;
+}
+getQuotes();
+
+changeQuote.addEventListener('click', getQuotes);
+
+//------------------------------AUDIO--------------------------------------------
+
+let isPlay = false;
+const playBtn = document.querySelector('.play');
+const playPrevBtn = document.querySelector('.play-prev')
+const playNextBtn = document.querySelector('.play-next')
+const audio = new Audio();
+let playNum = 0;
+let playListContainer = document.querySelector('.play-list');
+
+function playAudio() {
+  audio.src = playList[playNum].src;
+  if (!isPlay) {
+    audio.play();
+    isPlay = true;
+  } else {
+    audio.pause();
+    isPlay = false;
+  }
+}
+
+playBtn.addEventListener('click', playAudio);
+
+function togglePlayBtn() {
+  if (!isPlay) {
+    playBtn.classList.remove('pause');
+  } else {
+    playBtn.classList.add('pause');
+  }
+}
+playBtn.addEventListener('click', togglePlayBtn);
+
+function playNext() {
+  playNum++;
+  if (playNum === playList.length) {
+    playNum = 0;
+  }
+  playAudio();
+  console.log(playNum);
+}
+
+function playPrev() {
+  if (playNum === 0) {
+    playNum = playList.length;
+  }
+  playNum--;
+  playAudio();
+  console.log(playNum);
+}
+
+playList.forEach(el => {
+  const li = document.createElement('li');
+  li.classList.add('play-item');
+  li.textContent = el.title;
+  playListContainer.append(li);
+})
+
+playPrevBtn.addEventListener('click', playPrev);
+playNextBtn.addEventListener('click', playNext);
