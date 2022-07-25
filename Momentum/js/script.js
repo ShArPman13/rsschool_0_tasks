@@ -183,6 +183,7 @@ function playAudio() {
     audio.pause();
     isPlay = false;
   }
+  whichTrackIsActive();
 }
 
 playBtn.addEventListener('click', playAudio);
@@ -201,17 +202,23 @@ function playNext() {
   if (playNum === playList.length) {
     playNum = 0;
   }
-  playAudio();
-  console.log(playNum);
+  audio.src = playList[playNum].src;
+  audio.play();
+  isPlay = true;
+  togglePlayBtn();
+  whichTrackIsActive();
 }
 
 function playPrev() {
-  if (playNum === 0) {
-    playNum = playList.length;
-  }
   playNum--;
-  playAudio();
-  console.log(playNum);
+  if (playNum === -1) {
+    playNum = playList.length - 1;
+  }
+  audio.src = playList[playNum].src;
+  audio.play();
+  isPlay = true;
+  togglePlayBtn();
+  whichTrackIsActive();
 }
 
 playList.forEach(el => {
@@ -223,3 +230,12 @@ playList.forEach(el => {
 
 playPrevBtn.addEventListener('click', playPrev);
 playNextBtn.addEventListener('click', playNext);
+
+function whichTrackIsActive() {
+  playListContainer.childNodes.forEach(el => {
+    el.classList.remove('item-active');
+  })
+  playListContainer.childNodes[playNum].classList.add('item-active');
+}
+
+audio.addEventListener('ended', playNext); 
