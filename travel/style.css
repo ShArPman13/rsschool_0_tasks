@@ -2045,6 +2045,7 @@ h4 {
 
 .btnpopup:hover {
   background-color: #0d3c45;
+  color: rgb(255, 255, 255);
   transition: 0.3s;
 }
 
@@ -2136,7 +2137,7 @@ h4 {
 .btn-signin {
   background: rgba(13, 96, 111, 1);
   color: white;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .span-password {
