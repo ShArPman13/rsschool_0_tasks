@@ -177,6 +177,7 @@ boxDest.addEventListener("touchstart", (e) => {
 
 boxDest.addEventListener("touchmove", (e) => {
   e.preventDefault();
+  body.style.overflowY = 'hidden';
   endTouch = e;
 });
 
@@ -184,6 +185,7 @@ boxDest.addEventListener("touchend", () => {
   let diffX = endTouch.touches[0].pageX - startTouch.touches[0].pageX;
   let dir;
   dir = diffX < 0 ? moveLeft() : moveRight();
+  body.style.overflowY = null;
 });
 
 
