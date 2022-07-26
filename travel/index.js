@@ -176,7 +176,7 @@ boxDest.addEventListener("touchstart", (e) => {
 })
 
 boxDest.addEventListener("touchmove", (e) => {
-  // e.preventDefault();
+  e.preventDefault();
   endTouch = e;
 });
 
