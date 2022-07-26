@@ -166,32 +166,25 @@ BTN_LEFT.addEventListener('click', moveRight);
 rightArrow.addEventListener('click', moveLeft);
 leftArrow.addEventListener('click', moveRight);
 
-arrPics.addEventListener('swipe_left', moveRight);
+const boxDest = document.querySelector('.box-destinations');
 
+let startTouch = 0;
+let endTouch = 0;
 
+boxDest.addEventListener("touchstart", (e) => {
+  startTouch = e;
+})
 
+boxDest.addEventListener("touchmove", (e) => {
+  // e.preventDefault();
+  endTouch = e;
+});
 
-// console.log(sliderpics);
-// let sliderImg = [];
-// for (let i = 0; i < sliderpics.length; i++) {
-//   console.log(sliderpics[i]);
-//   sliderImg[i] = sliderpics[i].src;
-//   sliderpics[i].remove();
-// }
-// console.log(sliderImg);
-
-// let step = 0;
-// let offset = 0;
-
-// function draw() {
-//   let img = document.createElement('img');
-//   img.src = sliderImg[step];
-//   img.classList.add('sliderpic');
-//   img.style.left = offset * 800 + 'px';
-// }
-
-// draw();
-
+boxDest.addEventListener("touchend", () => {
+  let diffX = endTouch.touches[0].pageX - startTouch.touches[0].pageX;
+  let dir;
+  dir = diffX < 0 ? moveLeft() : moveRight();
+});
 
 
 function chooseCirkle() {
