@@ -164,20 +164,25 @@ getQuotes();
 
 changeQuote.addEventListener('click', getQuotes);
 
-//------------------------------AUDIO--------------------------------------------
+//------------------------------AUDIO--------------------------------------------git status
 
 let isPlay = false;
 const playBtn = document.querySelector('.play');
 const playPrevBtn = document.querySelector('.play-prev')
 const playNextBtn = document.querySelector('.play-next')
-const audio = new Audio();
 let playNum = 0;
+const audio = new Audio(playList[playNum].src);
 let playListContainer = document.querySelector('.play-list');
+let nameSong = document.querySelector('.name-song');
+nameSong.textContent = playList[playNum].title;
+let globalTimeToSeek = 0;
 
 function playAudio() {
   audio.src = playList[playNum].src;
+  audio.currentTime = globalTimeToSeek;
   if (!isPlay) {
     audio.play();
+    nameSong.textContent = playList[playNum].title;
     isPlay = true;
   } else {
     audio.pause();
@@ -204,6 +209,7 @@ function playNext() {
   }
   audio.src = playList[playNum].src;
   audio.play();
+  nameSong.textContent = playList[playNum].title;
   isPlay = true;
   togglePlayBtn();
   whichTrackIsActive();
@@ -216,6 +222,7 @@ function playPrev() {
   }
   audio.src = playList[playNum].src;
   audio.play();
+  nameSong.textContent = playList[playNum].title;
   isPlay = true;
   togglePlayBtn();
   whichTrackIsActive();
@@ -238,4 +245,61 @@ function whichTrackIsActive() {
   playListContainer.childNodes[playNum].classList.add('item-active');
 }
 
-audio.addEventListener('ended', playNext); 
+audio.addEventListener('ended', playNext);
+
+const volume = document.querySelector('.volume');
+const audioPlayer = document.querySelector('.player')
+
+volume.addEventListener("click", () => {
+  audio.muted = !audio.muted;
+  if (audio.muted) {
+    volume.classList.add("mute");
+  } else {
+    volume.classList.remove("mute");
+  }
+});
+
+audio.addEventListener("loadeddata", () => {
+  audioPlayer.querySelector(".length").textContent = playList[playNum].duration;
+  audio.volume = .25;
+},
+  false
+);
+
+function getTimeCodeFromNum(num) {
+  let seconds = parseInt(num);
+  let minutes = parseInt(seconds / 60);
+  seconds -= minutes * 60;
+  const hours = parseInt(minutes / 60);
+  minutes -= hours * 60;
+
+  if (hours === 0) return `${minutes}:${String(seconds % 60).padStart(2, 0)}`;
+  return `${String(hours).padStart(2, 0)}:${minutes}:${String(
+    seconds % 60
+  ).padStart(2, 0)}`;
+}
+
+const timeline = audioPlayer.querySelector(".timeline");
+
+timeline.addEventListener("click", (e) => {
+  const timelineWidth = window.getComputedStyle(timeline).width;
+  const timeToSeek = e.offsetX / parseInt(timelineWidth) * audio.duration;
+  audio.currentTime = timeToSeek;
+  globalTimeToSeek = timeToSeek;
+}, false);
+
+setInterval(() => {
+  const progressBar = audioPlayer.querySelector(".progress");
+  progressBar.style.width = audio.currentTime / audio.duration * 100 + "%";
+  audioPlayer.querySelector(".current").textContent = getTimeCodeFromNum(audio.currentTime);
+}, 100);
+
+const volumeSlider = audioPlayer.querySelector(".volume-slider");
+
+volumeSlider.addEventListener('click', (e) => {
+  const sliderHeight = window.getComputedStyle(volumeSlider).height;
+  const newVolume = (e.offsetY) / parseInt(sliderHeight);
+  audio.volume = newVolume;
+  audioPlayer.querySelector(".volume-percentage").style.height = newVolume * 100 + '%';
+}, false)
+
