@@ -25,7 +25,7 @@ const playList = [
     duration: '04:43'
   },
   {
-    title: 'Schiller Find youre here',
+    title: 'Schiller Find yr here',
     src: '../assets/sounds/Schiller Find youre here.mp3',
     duration: '03:32'
   }

@@ -119,7 +119,6 @@ async function getWeather(url) {
     weatherDescription.textContent = `Error! City ${city.value} not found.`;
   }
 }
-// getWeather(defaultUrl)\
 
 city.addEventListener('change', () => {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=en&appid=a7d6cf5c06b60ebd06921df6a6b2725a&units=metric`;
@@ -164,7 +163,7 @@ getQuotes();
 
 changeQuote.addEventListener('click', getQuotes);
 
-//------------------------------AUDIO--------------------------------------------git status
+//------------------------------AUDIO--------------------------------------------
 
 let isPlay = false;
 const playBtn = document.querySelector('.play');
@@ -176,10 +175,12 @@ let playListContainer = document.querySelector('.play-list');
 let nameSong = document.querySelector('.name-song');
 nameSong.textContent = playList[playNum].title;
 let globalTimeToSeek = 0;
+let globalVolume = 0.5;
 
 function playAudio() {
   audio.src = playList[playNum].src;
   audio.currentTime = globalTimeToSeek;
+  audio.volume = globalVolume;
   if (!isPlay) {
     audio.play();
     nameSong.textContent = playList[playNum].title;
@@ -189,6 +190,7 @@ function playAudio() {
     isPlay = false;
   }
   whichTrackIsActive();
+  togglePlayBtn()
 }
 
 playBtn.addEventListener('click', playAudio);
@@ -230,20 +232,53 @@ function playPrev() {
 
 playList.forEach(el => {
   const li = document.createElement('li');
+  const divPlayTrack = document.createElement('div');
   li.classList.add('play-item');
+  divPlayTrack.classList.add('divPlayTrack');
   li.textContent = el.title;
   playListContainer.append(li);
+  li.append(divPlayTrack);
 })
 
 playPrevBtn.addEventListener('click', playPrev);
 playNextBtn.addEventListener('click', playNext);
+
+const divPlayTrack = document.querySelectorAll('.divPlayTrack');
 
 function whichTrackIsActive() {
   playListContainer.childNodes.forEach(el => {
     el.classList.remove('item-active');
   })
   playListContainer.childNodes[playNum].classList.add('item-active');
+
+  divPlayTrack.forEach(el => {
+    el.classList.remove('divPlayTrackActive');
+  });
+  if (isPlay) {
+    divPlayTrack[playNum].classList.add('divPlayTrackActive');
+  }
 }
+
+divPlayTrack.forEach((el, index) => {
+  el.addEventListener('click', () => {
+    audio.pause;
+    if (playNum != index) {
+      globalTimeToSeek = 0
+      playNum = index;
+      audio.src = playList[index].src;
+      audio.volume = globalVolume;
+      audio.play(index.src);
+      nameSong.textContent = playList[playNum].title;
+      isPlay = true;
+      whichTrackIsActive();
+      togglePlayBtn()
+    }
+    else {
+      playAudio();
+      isPlay ? el.classList.add('divPlayTrackActive') : el.classList.remove('divPlayTrackActive');
+    }
+  })
+});
 
 audio.addEventListener('ended', playNext);
 
@@ -261,7 +296,7 @@ volume.addEventListener("click", () => {
 
 audio.addEventListener("loadeddata", () => {
   audioPlayer.querySelector(".length").textContent = playList[playNum].duration;
-  audio.volume = .25;
+  audio.volume = globalVolume;
 },
   false
 );
@@ -300,6 +335,8 @@ volumeSlider.addEventListener('click', (e) => {
   const sliderHeight = window.getComputedStyle(volumeSlider).height;
   const newVolume = (e.offsetY) / parseInt(sliderHeight);
   audio.volume = newVolume;
+  globalVolume = newVolume;
   audioPlayer.querySelector(".volume-percentage").style.height = newVolume * 100 + '%';
 }, false)
+
 
