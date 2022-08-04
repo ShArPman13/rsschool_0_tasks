@@ -61,10 +61,10 @@ let bgNum = getRandomNum();
 function setBg() {
   const img = new Image();
   let timeOfDay = getTimeOfDay();
-  img.src = `https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`
-  img.onload = () => {
-    body.style.backgroundImage = `url('https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`;
-  };
+  img.src = `https://raw.githubusercontent.com/ShArPman13/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`
+  img.addEventListener('load', () => {
+    body.style.backgroundImage = `url('https://raw.githubusercontent.com/ShArPman13/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`;
+  });
 }
 setBg()
 
@@ -124,11 +124,15 @@ city.addEventListener('change', () => {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=en&appid=a7d6cf5c06b60ebd06921df6a6b2725a&units=metric`;
   localSettings.url = url;
   getWeather(url);
+  let cityNameFirstLetterBig = city.value.toString();
+  cityNameFirstLetterBig = cityNameFirstLetterBig[0].toUpperCase() + cityNameFirstLetterBig.slice(1);
+  city.value = cityNameFirstLetterBig;
 })
 
 function setLocalStorage() {
   localStorage.setItem('url', localSettings.url);
   localStorage.setItem('nameSharp', nameSharp.value);
+  localStorage.setItem('city', city.value)
 }
 window.addEventListener('beforeunload', setLocalStorage)
 
@@ -138,13 +142,22 @@ function getLocalStorage() {
     getWeather(localSettings.url);
   } else {
     getWeather(defaultUrl);
+    city.value = 'Minsk';
   }
   if (localStorage.getItem('nameSharp')) {
     nameSharp.value = localStorage.getItem('nameSharp');
   }
+  if (localStorage.getItem('city')) {
+    let cityNameFirstLetterBig = (localStorage.getItem('city')).toString();
+    cityNameFirstLetterBig = cityNameFirstLetterBig[0].toUpperCase() + cityNameFirstLetterBig.slice(1);
+    city.value = cityNameFirstLetterBig;
+  }
+  else {
+    city.placeholder = 'Enter city';
+  }
 }
 window.addEventListener('load', getLocalStorage);
-city.placeholder = 'Enter city';
+
 //------------------------------QUOTES---------------------------------------------
 
 const quote = document.querySelector('.quote');
@@ -156,8 +169,8 @@ async function getQuotes() {
   const res = await fetch(quotes);
   const data = await res.json();
   let randomQuote = Math.floor(Math.random() * 101)
-  quote.textContent = data[randomQuote].quote;
-  author.textContent = data[randomQuote].author;
+  quote.textContent = `" ${data[randomQuote].quote} "`;
+  author.textContent = `- ${data[randomQuote].author} -`;
 }
 getQuotes();
 
@@ -321,12 +334,13 @@ timeline.addEventListener("click", (e) => {
   const timeToSeek = e.offsetX / parseInt(timelineWidth) * audio.duration;
   audio.currentTime = timeToSeek;
   globalTimeToSeek = timeToSeek;
-}, false);
+});
 
 setInterval(() => {
   const progressBar = audioPlayer.querySelector(".progress");
   progressBar.style.width = audio.currentTime / audio.duration * 100 + "%";
   audioPlayer.querySelector(".current").textContent = getTimeCodeFromNum(audio.currentTime);
+  globalTimeToSeek = audio.currentTime;
 }, 100);
 
 const volumeSlider = audioPlayer.querySelector(".volume-slider");
@@ -337,6 +351,6 @@ volumeSlider.addEventListener('click', (e) => {
   audio.volume = newVolume;
   globalVolume = newVolume;
   audioPlayer.querySelector(".volume-percentage").style.height = newVolume * 100 + '%';
-}, false)
+});
 
 
