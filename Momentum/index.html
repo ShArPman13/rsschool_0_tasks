@@ -38,19 +38,41 @@
 
       <ul class="play-list"></ul>
     </div>
-    <div class="weather">
-      <input type="text" class="city" placeholder="Enter city" />
-      <i class="weather-icon owf"></i>
-      <div class="weather-error"></div>
-      <div class="description-container">
-        <span class="temperature"></span>
-        <span class="weather-description"></span>
-        <span class="wind-speed"></span>
-        <span class="humidity"></span>
-
+    <div class="settings-weather">
+      <div class="weather">
+        <input type="text" class="city" placeholder="Enter city" />
+        <i class="weather-icon owf"></i>
+        <div class="weather-error"></div>
+        <div class="description-container">
+          <span class="temperature"></span>
+          <span class="weather-description"></span>
+          <span class="wind-speed"></span>
+          <span class="humidity"></span>
+        </div>
+        <div class="wind"></div>
+        <div class="humidity"></div>
       </div>
-      <div class="wind"></div>
-      <div class="humidity"></div>
+      <button class="settings"></button>
+      <div class="settings-bg">
+        <span class="settings-item">Language:<span class="language"></span></span>
+        <div class="divider-settings"></div>
+        <span class="settings-item">Photo API:</span>
+        <div class="conteiner-api">
+          <div class="api">
+            <img class="bibl-photo active" src="assets/svg/git.svg" alt="git">
+            <img class="bibl-photo" src="assets/svg/unsplash.svg" alt="git">
+            <img class="bibl-photo" src="assets/svg/flickr.svg" alt="git">
+          </div>
+          <select id="select">
+            <option hidden>Choose tag for API</option>
+            <option class="api-tag">Nature</option>
+            <option class="api-tag">Animals</option>
+            <option class="api-tag">Cars</option>
+            <option class="api-tag">Buildings</option>
+          </select>
+        </div>
+        <div class="divider-settings"></div>
+      </div>
     </div>
   </header>
   <main class="main">
@@ -62,7 +84,7 @@
     <date class="date"></date>
     <div class="greeting-container">
       <span class="greeting"></span>
-      <input type="text" class="name" placeholder="[Enter name]" />
+      <input type="text" class="name" />
     </div>
   </main>
   <footer class="footer">
