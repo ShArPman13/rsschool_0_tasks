@@ -69,6 +69,10 @@ languageBtn.addEventListener('click', () => {
     quotesSwitch = 'eng'
     getQuotes();
   }
+  function setLocalStorage() {
+    localStorage.setItem('url', url);
+  }
+  window.addEventListener('beforeunload', setLocalStorage)
 });
 
 function showTime() {
@@ -211,7 +215,9 @@ city.addEventListener('change', () => {
 function setLocalStorage() {
   localStorage.setItem('url', localSettings.url);
   localStorage.setItem('nameSharp', nameSharp.value);
-  localStorage.setItem('city', city.value)
+  localStorage.setItem('city', city.value);
+  localStorage.setItem('i', i);
+  localStorage.setItem('quoteSwitch', quotesSwitch);
 }
 window.addEventListener('beforeunload', setLocalStorage)
 
@@ -233,6 +239,20 @@ function getLocalStorage() {
   }
   else {
     city.placeholder = 'Enter city';
+  }
+  if (localStorage.getItem('quoteSwitch')) {
+    quotesSwitch = localStorage.getItem('quoteSwitch');
+    if (quotesSwitch == 'rus') {
+      getQuotesRus();
+    }
+    else {
+      getQuotes();
+    }
+  }
+  if (localStorage.getItem('i')) {
+    i = localStorage.getItem('i');
+    showGreeting(arrLang[i]);
+    languageBtn.textContent = arrLang[i];
   }
 }
 window.addEventListener('load', getLocalStorage);
@@ -461,9 +481,42 @@ const settingsBack = document.querySelector('.settings-bg');
 settingsBtn.addEventListener('click', () => {
   settingsBack.classList.toggle('active');
   settingsBtn.classList.toggle('active');
+});
+
+const state = {
+  language: 'en',
+  photoSource: 'github',
+  blocks: ['time', 'date', 'greeting', 'quote', 'weather', 'audio', 'todolist']
+}
+const visibleItems = document.querySelectorAll('.block');
+const weather = document.querySelector('.weather')
+
+visibleItems.forEach((el) => {
+  el.addEventListener('click', () => {
+    el.classList.toggle('active');
+    if (el.innerHTML === 'Time') {
+      time.classList.toggle('hidden')
+    }
+    if (el.innerHTML === 'Date') {
+      myDate.classList.toggle('hidden')
+    }
+    if (el.innerHTML === 'Greeting') {
+      greetings.classList.toggle('hidden')
+      nameSharp.classList.toggle('hidden')
+    }
+    if (el.innerHTML === 'Quote') {
+      quote.classList.toggle('hidden')
+      author.classList.toggle('hidden')
+      changeQuote.classList.toggle('hidden')
+    }
+    if (el.innerHTML === 'Audio') {
+      audioPlayer.classList.toggle('hidden')
+    }
+    if (el.innerHTML === 'Weather') {
+      weather.classList.toggle('hidden')
+    }
+  })
 })
-
-
 //------------------------------PHOTOS-from-API--------------------------------------------
 
 async function getLinkToImageFromUnsplash() {
@@ -472,7 +525,7 @@ async function getLinkToImageFromUnsplash() {
   const res = await fetch(url);
   const data = await res.json();
   let picUrl = data.urls.raw + "&w=1920";
-  console.log('Unsplash');
+  // console.log('Unsplash');
   const img = new Image();
   img.src = picUrl;
   img.addEventListener('load', () => {
@@ -486,7 +539,7 @@ async function getLinkToImageFromFlickr() {
   const res = await fetch(url);
   const data = await res.json();
   let picUrl = data.photos.photo[Math.floor(Math.random() * 90)].url_l
-  console.log('flickr');
+  // console.log('flickr');
   const img = new Image();
   img.src = picUrl;
   img.addEventListener('load', () => {
