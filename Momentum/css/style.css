@@ -301,6 +301,8 @@ body {
 }
 
 .settings {
+  position: absolute;
+  right: 15px;
   opacity: 0.7;
   background-image: url("../assets/svg/settings.svg");
   filter: drop-shadow(1px 1px 2px #000000);
@@ -311,7 +313,15 @@ body {
   transform: scale(1.1);
 }
 
+.lang-div {
+  display: flex;
+  gap: 15px;
+}
+
 .language {
+  position: absolute;
+  right: 21px;
+  top: 12px;
   color: rgb(255, 255, 255);
   font-weight: 800;
   cursor: pointer;
@@ -398,10 +408,13 @@ body {
 
 .block {
   cursor: pointer;
+  font-weight: 700;
+  opacity: 0.5;
 }
 
 .block.active {
   font-weight: 700;
+  opacity: 1;
 }
 
 .hidden {
@@ -412,20 +425,7 @@ body {
 .conteiner-api {
   display: flex;
   flex-direction: column;
-  gap: 5px;
-}
-
-#select {
-  opacity: 0;
-  border: 0;
-  outline: 0;
-  border-radius: 3px;
-  transition: 0.5s ease-in;
-}
-
-#select.active {
-  opacity: 1;
-
+  gap: 2px;
 }
 
 .main {
@@ -543,6 +543,102 @@ body {
   min-height: 20px;
   filter: drop-shadow(1px 1px 2px #000000);
   transition: ease-in 0.5s;
+}
+
+.input-text {
+  background: rgba(255, 255, 255, 0);
+  font-size: 18px;
+  font-weight: 800;
+  font-family: Aleo;
+  opacity: 0;
+  width: 120px;
+  border: none;
+  color: rgb(23, 23, 23);
+  transition: ease-in 0.5s;
+  visibility: hidden;
+  text-align: center;
+}
+
+.input-text::placeholder {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 800;
+  font-family: 'Aleo';
+  font-style: italic;
+  color: rgb(17, 17, 17);
+  text-align: center;
+}
+
+.input-text.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Убираем границу у place-holder при нажатии */
+.input-text:focus {
+  outline: 0;
+  outline-offset: 0;
+}
+
+/* Убираем place-holder текст при нажатии */
+.input-text:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.input-text:focus::-moz-placeholder {
+  color: transparent;
+  border: 0;
+}
+
+.input-text:focus:-moz-placeholder {
+  color: transparent;
+  border: 0;
+}
+
+.input-text:focus:-ms-input-placeholder {
+  color: transparent;
+  border: 0;
+}
+
+/* плавное появление placeholder */
+input::-webkit-input-placeholder {
+  opacity: 1;
+  transition: opacity 0.9s ease;
+}
+
+input::-moz-placeholder {
+  opacity: 1;
+  transition: opacity 0.9s ease;
+}
+
+input:-moz-placeholder {
+  opacity: 1;
+  transition: opacity 0.9s ease;
+}
+
+input:-ms-input-placeholder {
+  opacity: 1;
+  transition: opacity 0.9s ease;
+}
+
+input:focus::-webkit-input-placeholder {
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+
+input:focus::-moz-placeholder {
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+
+input:focus:-moz-placeholder {
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+
+input:focus:-ms-input-placeholder {
+  opacity: 0;
+  transition: opacity 0.9s ease;
 }
 
 @media (max-width: 768px) {
