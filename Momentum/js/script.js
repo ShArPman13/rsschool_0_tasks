@@ -20,6 +20,14 @@ const greetingTranslation = {
   ru: ['Доброе утро', 'Добрый день', 'Добрый вечер', 'Доброй ночи']
 }
 
+const settingsTranslation = {
+  en: ['Language', 'Photo API', 'Visibility blocks'],
+  pl: ['Język', 'Zdjęcie API', 'Wyświetlanie bloków'],
+  ru: ['Язык', 'Фото API', 'Отображение блоков']
+}
+
+const settingsItem = document.querySelectorAll('.settings-item-name');
+
 const placeHolderNameTranslation = ['Enter name', 'Wpisz imię', 'Введите имя'];
 
 function showPlaceHolder() {
@@ -56,6 +64,7 @@ let quotesSwitch = '';
 
 languageBtn.addEventListener('click', () => {
   i++;
+  showTime();
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=${arrLang[i]}&appid=a7d6cf5c06b60ebd06921df6a6b2725a&units=metric`;
   if (i === 3) { i = 0 };
   languageBtn.textContent = arrLang[i];
@@ -69,6 +78,17 @@ languageBtn.addEventListener('click', () => {
     quotesSwitch = 'eng'
     getQuotes();
   }
+  function setLocalStorage() {
+    localStorage.setItem('url', url);
+  }
+  settingsItem.forEach((el, index) => {
+    el.textContent = settingsTranslation[arrLang[i]][index];
+  })
+  window.addEventListener('beforeunload', setLocalStorage)
+});
+
+settingsItem.forEach((el, index) => {
+  el.textContent = settingsTranslation[arrLang[i]][index];
 });
 
 function showTime() {
@@ -190,6 +210,8 @@ async function getWeather(url) {
     weatherDescription.textContent = data.weather[0].description;
     windSpeed.textContent = `Wind Speed: ${data.wind.speed}`;
     humidity.textContent = `Humidity: ${data.main.humidity}`;
+    let cityTranslate = data.name;
+    city.value = cityTranslate;
   } catch (error) {
     weatherIcon.className = 'weather-icon owf';
     temperature.textContent = '';
@@ -211,7 +233,9 @@ city.addEventListener('change', () => {
 function setLocalStorage() {
   localStorage.setItem('url', localSettings.url);
   localStorage.setItem('nameSharp', nameSharp.value);
-  localStorage.setItem('city', city.value)
+  localStorage.setItem('city', city.value);
+  localStorage.setItem('i', i);
+  localStorage.setItem('quoteSwitch', quotesSwitch);
 }
 window.addEventListener('beforeunload', setLocalStorage)
 
@@ -233,6 +257,23 @@ function getLocalStorage() {
   }
   else {
     city.placeholder = 'Enter city';
+  }
+  if (localStorage.getItem('quoteSwitch')) {
+    quotesSwitch = localStorage.getItem('quoteSwitch');
+    if (quotesSwitch == 'rus') {
+      getQuotesRus();
+    }
+    else {
+      getQuotes();
+    }
+  }
+  if (localStorage.getItem('i')) {
+    i = localStorage.getItem('i');
+    showGreeting(arrLang[i]);
+    languageBtn.textContent = arrLang[i];
+    settingsItem.forEach((el, index) => {
+      el.textContent = settingsTranslation[arrLang[i]][index];
+    });
   }
 }
 window.addEventListener('load', getLocalStorage);
@@ -461,44 +502,176 @@ const settingsBack = document.querySelector('.settings-bg');
 settingsBtn.addEventListener('click', () => {
   settingsBack.classList.toggle('active');
   settingsBtn.classList.toggle('active');
+});
+
+const state = {
+  language: 'en',
+  photoSource: 'github',
+  blocks: ['time', 'date', 'greeting', 'quote', 'audio', 'weather']
+}
+const visibleItems = document.querySelectorAll('.block');
+const weather = document.querySelector('.weather')
+
+visibleItems.forEach((el) => {
+  el.addEventListener('click', () => {
+    el.classList.toggle('active');
+    if (el.innerHTML === 'Time') {
+      time.classList.toggle('hidden')
+    }
+    if (el.innerHTML === 'Date') {
+      myDate.classList.toggle('hidden')
+    }
+    if (el.innerHTML === 'Greeting') {
+      greetings.classList.toggle('hidden')
+      nameSharp.classList.toggle('hidden')
+    }
+    if (el.innerHTML === 'Quote') {
+      quote.classList.toggle('hidden')
+      author.classList.toggle('hidden')
+      changeQuote.classList.toggle('hidden')
+    }
+    if (el.innerHTML === 'Audio') {
+      audioPlayer.classList.toggle('hidden')
+    }
+    if (el.innerHTML === 'Weather') {
+      weather.classList.toggle('hidden')
+    }
+  })
 })
 
+let arrActiveBlock = [];
+let arrActiveBlockMain = [];
+let arrActiveApi = [];
+
+window.addEventListener('beforeunload', () => {
+  let arrOfPhotoBankFromLocalStorage = [];
+  arrOfPhotoBank.forEach((el) => {
+    if (el.classList.contains('active')) {
+      arrOfPhotoBankFromLocalStorage.push('active')
+    }
+    else {
+      arrOfPhotoBankFromLocalStorage.push('none')
+    }
+    localStorage.setItem('activeApi', arrOfPhotoBankFromLocalStorage);
+  });
+  arrActiveApi = arrOfPhotoBankFromLocalStorage;
+})
+arrActiveApi = (localStorage.getItem('activeApi')).split(',');
+
+function getHiddenBlocks() { // Получаем пользовательские настройки по открытым и закрытым блокам
+  visibleItems.forEach((elem) => {
+    if (elem.classList.contains('active')) {
+      arrActiveBlock.push('active');
+    }
+    else {
+      arrActiveBlock.push('none');
+    }
+  });
+  localStorage.setItem('activeBlocks', arrActiveBlock); // сохраняем их в Local Storage
+}
+window.addEventListener('beforeunload', getHiddenBlocks); // запускаем функциию перед обновленинм страницы
+arrActiveBlockMain = localStorage.getItem('activeBlocks'); // получаем из Local Storage
+let value = arrActiveBlockMain.split(','); // Pack settings to Array
+
+window.addEventListener('load', () => { // в момент загрузки страницы
+  arrOfPhotoBank.forEach((el) => {
+    el.classList.remove('active')
+  })
+  arrOfPhotoBank.forEach((el, i) => {
+    if (arrActiveApi[i] === 'active') {
+      el.classList.add('active')
+    }
+    if (arrOfPhotoBank[0].classList.contains('active')) {
+      inputText.classList.remove('active')
+    }
+    else {
+      inputText.classList.add('active')
+    }
+  })
+  globalActiveTag = localStorage.getItem('globalActiveTag');
+  inputText.value = globalActiveTag;
+  getSlideNext()
+
+  visibleItems.forEach((e, i) => { // проходим по блокам
+    if (value[i] === 'none') { // удаляем класс active, если блок был скрыт пользователем ранее
+      e.classList.remove('active');
+    }
+  })
+  visibleItems.forEach((el) => {  // и проходим еще раз по блокам и скрываем, те которые скрыл пользователь ранее 
+    if (!el.classList.contains('active')) {
+      if (el.innerHTML === 'Time') {
+        time.classList.toggle('hidden')
+      }
+      if (el.innerHTML === 'Date') {
+        myDate.classList.toggle('hidden')
+      }
+      if (el.innerHTML === 'Greeting') {
+        greetings.classList.toggle('hidden')
+        nameSharp.classList.toggle('hidden')
+      }
+      if (el.innerHTML === 'Quote') {
+        quote.classList.toggle('hidden')
+        author.classList.toggle('hidden')
+        changeQuote.classList.toggle('hidden')
+      }
+      if (el.innerHTML === 'Audio') {
+        audioPlayer.classList.toggle('hidden')
+      }
+      if (el.innerHTML === 'Weather') {
+        weather.classList.toggle('hidden')
+      }
+    }
+  })
+});
 
 //------------------------------PHOTOS-from-API--------------------------------------------
 
 async function getLinkToImageFromUnsplash() {
-  let timeOfDay = globalActiveTag;
-  const url = `https://api.unsplash.com/photos/random?orientation=landscape&query=${timeOfDay}&client_id=dp0dFHpt-gWwEbAVwVYdt1FguTTWKvkC3sOcgmNMotM`;
-  const res = await fetch(url);
-  const data = await res.json();
-  let picUrl = data.urls.raw + "&w=1920";
-  console.log('Unsplash');
-  const img = new Image();
-  img.src = picUrl;
-  img.addEventListener('load', () => {
-    body.style.backgroundImage = `url(${picUrl})`;
-  });
+  try {
+    let timeOfDay = globalActiveTag;
+    const url = `https://api.unsplash.com/photos/random?orientation=landscape&query=${timeOfDay}&client_id=dp0dFHpt-gWwEbAVwVYdt1FguTTWKvkC3sOcgmNMotM`;
+    const res = await fetch(url);
+    const data = await res.json();
+    let picUrl = data.urls.raw + "&w=1920";
+    // console.log('Unsplash');
+    const img = new Image();
+    img.src = picUrl;
+    img.addEventListener('load', () => {
+      body.style.backgroundImage = `url(${picUrl})`;
+    });
+  }
+  catch (error) {
+    inputText.value = '';
+    inputText.placeholder = 'Wrong tag!'
+  }
 }
 
 async function getLinkToImageFromFlickr() {
-  let timeOfDay = globalActiveTag;
-  const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=af211cc952f928c1ef726f9c5111b3c7&tags=${timeOfDay}&orientation=landscape&width=1920&height=1080&extras=url_l&format=json&nojsoncallback=1`;
-  const res = await fetch(url);
-  const data = await res.json();
-  let picUrl = data.photos.photo[Math.floor(Math.random() * 90)].url_l
-  console.log('flickr');
-  const img = new Image();
-  img.src = picUrl;
-  img.addEventListener('load', () => {
-    body.style.backgroundImage = `url(${picUrl})`;
-  });
+  try {
+    let timeOfDay = globalActiveTag;
+    const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=af211cc952f928c1ef726f9c5111b3c7&tags=${timeOfDay}&orientation=landscape&width=1920&height=1080&extras=url_l&format=json&nojsoncallback=1`;
+    const res = await fetch(url);
+    const data = await res.json();
+    let picUrl = data.photos.photo[Math.floor(Math.random() * 90)].url_l
+    // console.log('flickr');
+    const img = new Image();
+    img.src = picUrl;
+    img.addEventListener('load', () => {
+      body.style.backgroundImage = `url(${picUrl})`;
+    });
+  }
+  catch (error) {
+    inputText.value = '';
+    inputText.placeholder = 'Wrong tag!'
+  }
 }
 
-const select = document.getElementById('select')
+const inputText = document.querySelector('.input-text');
 
-select.onchange = function () {
+inputText.onchange = function () {
   const activeTag = this.value;
   globalActiveTag = activeTag;
+  localStorage.setItem('globalActiveTag', globalActiveTag);
 }
 
 arrOfPhotoBank.forEach((el) => {
@@ -508,11 +681,10 @@ arrOfPhotoBank.forEach((el) => {
     });
     el.classList.toggle('active')
     if (arrOfPhotoBank[0].classList.contains('active')) {
-      select.classList.remove('active')
+      inputText.classList.remove('active')
     }
     else {
-      select.classList.add('active')
+      inputText.classList.add('active')
     }
   })
-});
-
+})

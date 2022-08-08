@@ -4,6 +4,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link href="https://fonts.googleapis.com/css?family=Magra:regular,700" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Aleo:300,300italic,regular,italic,700,700italic">
+
   <link href="assets/favicon.ico" rel="shortcut icon" />
   <link rel="stylesheet" href="css/owfont-regular.css" />
   <link rel="stylesheet" href="css/style.css" />
@@ -52,26 +56,32 @@
         <div class="wind"></div>
         <div class="humidity"></div>
       </div>
-      <button class="settings"></button>
       <div class="settings-bg">
-        <span class="settings-item">Language:<span class="language"></span></span>
+        <div class="lang-div"><span class="settings-item settings-item-name"></span><span class="language"></span></div>
         <div class="divider-settings"></div>
-        <span class="settings-item">Photo API:</span>
+        <span class="settings-item settings-item-name"></span>
         <div class="conteiner-api">
           <div class="api">
             <img class="bibl-photo active" src="assets/svg/git.svg" alt="git">
             <img class="bibl-photo" src="assets/svg/unsplash.svg" alt="git">
             <img class="bibl-photo" src="assets/svg/flickr.svg" alt="git">
           </div>
-          <select id="select">
-            <option hidden>Choose tag for API</option>
-            <option class="api-tag">Nature</option>
-            <option class="api-tag">Animals</option>
-            <option class="api-tag">Cars</option>
-            <option class="api-tag">Buildings</option>
-          </select>
+          <input type="text" class="input-text" placeholder="write your tag here">
         </div>
         <div class="divider-settings"></div>
+        <span class="settings-item settings-item-name"></span>
+        <div class="block-line">
+          <span class="settings-item block active">Time</span>
+          <span class="settings-item block active">Date</span>
+        </div>
+        <div class="block-line">
+          <span class="settings-item block active">Greeting</span>
+          <span class="settings-item block active">Quote</span>
+        </div>
+        <div class="block-line">
+          <span class="settings-item block active">Audio</span>
+          <span class="settings-item block active">Weather</span>
+        </div>
       </div>
     </div>
   </header>
@@ -93,6 +103,7 @@
       <div class="quote"></div>
       <div class="author"></div>
     </div>
+    <button class="settings"></button>
   </footer>
   <script type="module" src="js/script.js"></script>
 </body>
