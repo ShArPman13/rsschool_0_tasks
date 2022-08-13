@@ -511,10 +511,12 @@ const state = {
 }
 const visibleItems = document.querySelectorAll('.block');
 const weather = document.querySelector('.weather')
+const logger = document.querySelector('.logger');
 
 visibleItems.forEach((el) => {
   el.addEventListener('click', () => {
     el.classList.toggle('active');
+    // logger.classList.toggle('active');
     if (el.innerHTML === 'Time') {
       time.classList.toggle('hidden')
     }
@@ -688,3 +690,145 @@ arrOfPhotoBank.forEach((el) => {
     }
   })
 })
+
+//------------------------------TODO--------------------------------------------
+
+const todoBtn = document.querySelector('.todo');
+const todoBg = document.querySelector('.todo-bg');
+const newTodo = document.querySelector('.new-todo');
+const inputTodo = document.querySelector('.input-todo');
+const todoList = document.querySelector('.todo-list');
+const getStarted = document.querySelector('.get-started')
+let checkBox = document.createElement('input');
+let label = document.createElement('label');
+let todoArray = [];
+let labelArray = [];
+let dotsArray = [];
+let popupTodoItemArray = [];
+
+todoBtn.addEventListener('click', () => {
+  if (todoArray.length > 0) {
+    newTodo.classList.add('hidden');
+    getStarted.classList.add('hidden');
+  }
+  else {
+    setTimeout(() => {
+      newTodo.classList.remove('hidden');
+      getStarted.classList.remove('hidden');
+    }, 100);
+
+  }
+
+  todoBg.classList.toggle('active');
+  if (todoBg.classList.contains('active')) {
+    todoBtn.classList.add('active');
+  }
+  else {
+    todoBtn.classList.remove('active');
+    inputTodo.classList.remove('active');
+    // setTimeout(() => {
+    //   newTodo.classList.remove('hidden')
+    // }, 100);
+  }
+})
+
+newTodo.addEventListener('click', () => {
+  inputTodo.classList.add('active');
+  inputTodo.focus();
+  newTodo.classList.add('hidden');
+  getStarted.classList.add('hidden');
+})
+
+inputTodo.addEventListener('change', () => {
+  const dots = document.createElement('div');
+  dots.classList.add('dot');
+  const popupTodoItem = document.createElement('div');
+  popupTodoItem.classList.add('popup-todo-item');
+  const ul = document.createElement('ul');
+  ul.classList.add('popup-todo-item-ul');
+
+  checkBox = document.createElement('input');
+  label = document.createElement('label');
+  const li = document.createElement('li');
+  const li2 = document.createElement('li');
+  const li3 = document.createElement('li');
+  li2.textContent = 'Edit';
+  li3.textContent = 'Delete';
+
+  dots.classList.add('dot');
+  dots.textContent = '...';
+
+  label.appendChild(document.createTextNode(inputTodo.value));
+  li.classList.add('todo-list-item');
+
+  checkBox.type = 'checkbox';
+  checkBox.name = "name";
+  checkBox.value = "value";
+  checkBox.id = inputTodo.value;
+  label.htmlFor = "id";
+
+  todoList.classList.add('active');
+  todoList.append(li);
+  li.append(checkBox);
+  li.append(label);
+  li.append(dots);
+  dots.append(popupTodoItem);
+
+  popupTodoItem.appendChild(ul);
+  ul.append(li2);
+  ul.append(li3);
+
+  inputTodo.value = '';
+
+  todoArray.push(checkBox);
+  labelArray.push(label)
+  dotsArray.push(dots);
+  popupTodoItemArray.push(popupTodoItem);
+
+  todoArray.forEach((el, index) => {
+    el.addEventListener('change', () => {
+      if (el.checked) {
+        labelArray[index].classList.add('done');
+      }
+      else {
+        labelArray[index].classList.remove('done');
+      }
+    })
+  })
+
+  dotsArray.forEach((el, index) => {
+
+    el.addEventListener('click', (e) => {
+      // popupTodoItemArray.classList.remove('active');
+      popupTodoItemArray[index].classList.add('active');
+      if (popupTodoItemArray[index].classList.contains('active')) {
+        dotsArray[index].classList.add('opacity-temp');
+        if (!e.target.classList.contains('dot')) {
+          popupTodoItemArray[index].classList.remove('active');
+          dotsArray[index].classList.remove('opacity-temp');
+        }
+      }
+      else {
+        dotsArray[index].style.opacity = '0';
+      }
+    })
+    // dots.addEventListener('click', (e) => {
+    //   console.log(dotsArray);
+    //   popupTodoItem.classList.add('active');
+    //   if (popupTodoItem.classList.contains('active')) {
+    //     dots.style.opacity = '1';
+    //     if (!e.target.classList.contains('dot')) {
+    //       popupTodoItem.classList.remove('active');
+    //     }
+    //   }
+  })
+
+})
+window.addEventListener('click', (e) => {
+  console.log(e.target);
+})
+
+
+
+
+
