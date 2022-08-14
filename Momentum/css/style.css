@@ -869,13 +869,14 @@ label {
   justify-content: center;
   gap: 10px;
   position: fixed;
-  left: 200px;
+  left: 194px;
   height: 70px;
   width: 70px;
   background-color: rgb(243, 243, 243);
   filter: drop-shadow(2px 2px 3px #858585);
   border-radius: 3px;
   z-index: 2;
+  cursor: pointer;
 }
 
 .popup-todo-item-ul {
