@@ -705,6 +705,7 @@ let todoArray = [];
 let labelArray = [];
 let dotsArray = [];
 let popupTodoItemArray = [];
+let todoListItems = [];
 
 todoBtn.addEventListener('click', () => {
   if (todoArray.length > 0) {
@@ -716,19 +717,21 @@ todoBtn.addEventListener('click', () => {
       newTodo.classList.remove('hidden');
       getStarted.classList.remove('hidden');
     }, 100);
-
   }
-
   todoBg.classList.toggle('active');
   if (todoBg.classList.contains('active')) {
     todoBtn.classList.add('active');
+    if (todoArray.length === 0) {
+      inputTodo.classList.remove('active');
+    }
+    else {
+      inputTodo.classList.add('active');
+    }
+
   }
   else {
     todoBtn.classList.remove('active');
     inputTodo.classList.remove('active');
-    // setTimeout(() => {
-    //   newTodo.classList.remove('hidden')
-    // }, 100);
   }
 })
 
@@ -738,53 +741,72 @@ newTodo.addEventListener('click', () => {
   newTodo.classList.add('hidden');
   getStarted.classList.add('hidden');
 })
-
+//create _item_for_todo_ after filling the input
 inputTodo.addEventListener('change', () => {
+  addItemForTodo();
+  inputTodo.value = '';
+  isItemDone();
+  openContextMenuByPressingDots();
+})
+
+// window.addEventListener('click', (e) => {
+//   console.log(e.target);
+// })
+
+
+const addItemForTodo = () => {
+  //create _..._
   const dots = document.createElement('div');
   dots.classList.add('dot');
+  dots.textContent = '...';
+  //create div_for_contextMmenu
   const popupTodoItem = document.createElement('div');
   popupTodoItem.classList.add('popup-todo-item');
+  //create ul_for_contextMenu
   const ul = document.createElement('ul');
   ul.classList.add('popup-todo-item-ul');
-
+  //create chekBox_for_contextMmenu
   checkBox = document.createElement('input');
-  label = document.createElement('label');
-  const li = document.createElement('li');
-  const li2 = document.createElement('li');
-  const li3 = document.createElement('li');
-  li2.textContent = 'Edit';
-  li3.textContent = 'Delete';
-
-  dots.classList.add('dot');
-  dots.textContent = '...';
-
-  label.appendChild(document.createTextNode(inputTodo.value));
-  li.classList.add('todo-list-item');
-
   checkBox.type = 'checkbox';
   checkBox.name = "name";
   checkBox.value = "value";
   checkBox.id = inputTodo.value;
+  //create label_for_checkBox
+  label = document.createElement('label');
+  label.appendChild(document.createTextNode(inputTodo.value));
   label.htmlFor = "id";
+  //create todo_list_item
+  const li = document.createElement('li');
+  li.classList.add('todo-list-item');
+  li.setAttribute('data-atribute', Math.random());
+  //create edit_for_conextMenu
+  const li2 = document.createElement('li');
+  li2.textContent = 'Edit';
+  li2.classList.add('edit');
+  //create delete_for_conextMenu
+  const li3 = document.createElement('li');
+  li3.textContent = 'Delete';
+  li3.classList.add('delete');
 
   todoList.classList.add('active');
-  todoList.append(li);
-  li.append(checkBox);
-  li.append(label);
-  li.append(dots);
-  dots.append(popupTodoItem);
 
-  popupTodoItem.appendChild(ul);
-  ul.append(li2);
-  ul.append(li3);
+  todoList.append(li);//add_item_in_todolist
+  li.append(checkBox);//add_checkBox_in_item
+  li.append(label);//add_label_in_item
+  li.append(dots);//add_..._in_item
+  dots.append(popupTodoItem);//add_contextMenu_in_...
+  popupTodoItem.appendChild(ul);//add_ul_in_contextMenu
+  ul.append(li2);//add_edit_in_contextMenu
+  ul.append(li3);//add_delete_in_contextMenu
 
-  inputTodo.value = '';
-
+  todoListItems.push(li);
   todoArray.push(checkBox);
   labelArray.push(label)
   dotsArray.push(dots);
   popupTodoItemArray.push(popupTodoItem);
+}
 
+const isItemDone = () => {
   todoArray.forEach((el, index) => {
     el.addEventListener('change', () => {
       if (el.checked) {
@@ -795,40 +817,45 @@ inputTodo.addEventListener('change', () => {
       }
     })
   })
+}
 
+const openContextMenuByPressingDots = () => {
   dotsArray.forEach((el, index) => {
-
     el.addEventListener('click', (e) => {
-      // popupTodoItemArray.classList.remove('active');
+      clearAllStyles();
+      // todoListItems[index].classList.add('grey-item');
       popupTodoItemArray[index].classList.add('active');
       if (popupTodoItemArray[index].classList.contains('active')) {
         dotsArray[index].classList.add('opacity-temp');
+        inputTodo.classList.remove('active');
         if (!e.target.classList.contains('dot')) {
           popupTodoItemArray[index].classList.remove('active');
           dotsArray[index].classList.remove('opacity-temp');
+          inputTodo.classList.add('active');
+          // todoListItems[index].classList.remove('grey-item');
         }
       }
       else {
         dotsArray[index].style.opacity = '0';
       }
     })
-    // dots.addEventListener('click', (e) => {
-    //   console.log(dotsArray);
-    //   popupTodoItem.classList.add('active');
-    //   if (popupTodoItem.classList.contains('active')) {
-    //     dots.style.opacity = '1';
-    //     if (!e.target.classList.contains('dot')) {
-    //       popupTodoItem.classList.remove('active');
-    //     }
-    //   }
   })
+}
 
-})
-window.addEventListener('click', (e) => {
-  console.log(e.target);
-})
+const clearAllStyles = () => {
+  popupTodoItemArray.forEach((e) => {
+    e.classList.remove('active');
+  })
+  todoListItems.forEach((e) => {
+    e.classList.remove('grey-item');
+  })
+  dotsArray.forEach((el) => {
+    el.classList.remove('opacity-temp');
+  })
+}
 
-
-
-
-
+// if (e.target.classList.contains('delete')) {
+//   console.log(e.target)
+//   const parent = e.target.closest('data-atribute')
+//   console.log(parent);
+// }
