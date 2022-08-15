@@ -739,7 +739,8 @@ newTodo.addEventListener('click', () => {
   getStarted.classList.add('hidden');
 })
 
-const array = [];
+let array = JSON.parse(localStorage.getItem("arrayTodo"));
+
 //create _item_for_todo_ after filling the input
 inputTodo.addEventListener('change', () => {
   array.push({
@@ -786,14 +787,17 @@ const addItemForTodo = (el) => {
   }
   label.addEventListener('dblclick', () => {
     label.contentEditable = true;
-    label.tabIndex = 1;
     label.focus();
   })
-  label.addEventListener('keydown', (e) => {
+  label.addEventListener('keydown', (e) => {//change el.value after pressing Enter
     if (e.code === 'Enter') {
       el.value = label.textContent;
       label.contentEditable = false;
     }
+  })
+  label.addEventListener('blur', () => {//change el.value after loose the focus
+    el.value = label.textContent;
+    label.contentEditable = false;
   })
   //create todo_list_item
   const li = document.createElement('li');
@@ -888,10 +892,15 @@ const editItem = (el, popupTodoItem, label) => {
   popupTodoItem.addEventListener('click', (e) => {
     if (e.target.classList.contains('edit')) {
       el.contentEditAble = true;
+      label.focus(); // does not work =(
       todoList.innerHTML = '';
-      label.focus();
       array.forEach((el) => addItemForTodo(el));
     }
   })
 }
 
+window.addEventListener('beforeunload', () => {
+  localStorage.setItem('arrayTodo', JSON.stringify(array));
+})
+
+array.forEach((el) => addItemForTodo(el));
