@@ -238,7 +238,7 @@ function setLocalStorage() {
   localStorage.setItem('quoteSwitch', quotesSwitch);
 }
 window.addEventListener('beforeunload', setLocalStorage)
-
+getWeather(defaultUrl);
 function getLocalStorage() {
   if (localStorage.getItem('url')) {
     localSettings.url = localStorage.getItem('url');
