@@ -904,6 +904,26 @@ label {
   z-index: 1;
 }
 
+.git-rss {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.git-img,
+.rss-img {
+  height: 20px;
+}
+
+.year {
+  font-size: 18px;
+  font-weight: 500;
+  font-family: 'Magra';
+}
+
 @media (max-width: 768px) {
   .time {
     min-height: 80px;
