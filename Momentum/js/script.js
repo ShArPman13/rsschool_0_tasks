@@ -739,8 +739,12 @@ newTodo.addEventListener('click', () => {
   getStarted.classList.add('hidden');
 })
 
-let array = JSON.parse(localStorage.getItem("arrayTodo"));
 
+let array = JSON.parse(localStorage.getItem("arrayTodo"));
+if (array === null) {
+  array = [];
+}
+console.log(array);
 //create _item_for_todo_ after filling the input
 inputTodo.addEventListener('change', () => {
   array.push({
