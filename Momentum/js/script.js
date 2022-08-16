@@ -240,10 +240,14 @@ function setLocalStorage() {
 window.addEventListener('beforeunload', setLocalStorage)
 getWeather(defaultUrl);
 function getLocalStorage() {
-  if (localStorage.getItem('url')) {
+  if (localStorage.getItem('url') = 'undefined') {
+    getWeather(defaultUrl);
+    city.value = 'Minsk';
+  } else if (localStorage.getItem('url')) {
     localSettings.url = localStorage.getItem('url');
     getWeather(localSettings.url);
-  } else {
+  }
+  else {
     getWeather(defaultUrl);
     city.value = 'Minsk';
   }
