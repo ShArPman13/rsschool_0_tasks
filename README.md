@@ -1,2 +1,2 @@
-# sharpman13-JSFEPRESCHOOL2022Q2
-Private repository for @sharpman13
+• Travel landing https://sharpman13.github.io/rsschool_0_tasks/travel/
+• Momentum app https://sharpman13.github.io/rsschool_0_tasks/Momentum/
