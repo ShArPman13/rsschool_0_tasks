@@ -28,6 +28,11 @@ const playList = [
     title: 'Schiller Find yr here',
     src: 'assets/sounds/schiller_find_youre_here.mp3',
     duration: '03:32'
-  }
+  },
+  {
+    title: 'Moby Bring Sally Up',
+    src: 'assets/sounds/moby_bring_sally_up.mp3',
+    duration: '03:26'
+  },
 ]
 export default playList;
